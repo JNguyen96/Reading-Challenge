@@ -40,7 +40,7 @@ function populateTables(){
         	}
         });
         svmTableContent += '<tr>';
-        svmTableContent += '<td>'+ studentBooks +'</td>';
+        svmTableContent += '<td>'+ studentBooks / (userListData.length-1)  +'</td>';
         svmTableContent += '<td>' + mikeBooks + '</td>';
         svmTableContent += '</tr>';
         // Inject the whole content string into our existing HTML table
@@ -104,31 +104,32 @@ function addUser(event){
 	if(errorCount === 0){
 		var newUser = {
 			'fullname': $('#register input#regFullName').val(),
-			'username': $('#register input#regUserName').val(),
-			'password': $('#register input#regPassword').val(),
-			'email': $('#register input#regEmail').val(),
-			'year': $('#register select#regYear').val(),
-			'gender': $('#register select#regGender').val()
-		}
+            'username': $('#register input#regUserName').val(),
+            'password': $('#register input#regPassword').val(),
+            'email': $('#register input#regEmail').val(),
+            'year': $('#register select#regYear').val(),
+            'gender': $('#register select#regGender').val(),
+            'books': '[{"title" : "Case For Christmas", "author" : "Lee Strobel"},{"title" : "Mere Christianity", "author" : "C.S. Lewis"}]'
+        };
 
-		$.ajax({
-			type: 'POST',
-			data: newUser,
-			url: '/users/registeruser',
-			dataType: 'JSON'
-		}).done(function(response){
+        $.ajax({
+        	type: 'POST',
+        	data: newUser,
+        	url: '/users/registeruser',
+        	dataType: 'JSON'
+        }).done(function(response){
 
-			if(response.msg === ''){
-				$('#register fieldset input').val('');
-				populateTable();
-			}
-			else{
-				alert('Error: ' + response.msg);
-			}
+        	if(response.msg === ''){
+        		$('#register fieldset input').val('');
+        		populateTable();
+        	}
+        	else{
+        		alert('Error: ' + response.msg);
+        	}
 
-		});
+        });
 
-		window.location.href = "/home";
+        window.location.href = "/home";
 
 	}
 	else{
@@ -233,6 +234,7 @@ function addBook(event){
 			}
 
 		});
+	}
 	else{
 		alert('Please fill in all fields');
 		return false;
