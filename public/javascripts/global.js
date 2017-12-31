@@ -103,33 +103,33 @@ function addUser(event){
 
 	if(errorCount === 0){
 		var newUser = {
-<<<<<<< HEAD
 			'fullname': $('#register input#regFullName').val(),
-			'username': $('#register input#regUserName').val(),
-			'password': $('#register input#regPassword').val(),
-			'email': $('#register input#regEmail').val(),
-			'year': $('#register select#regYear').val(),
-			'gender': $('#register select#regGender').val()
-		}
+            'username': $('#register input#regUserName').val(),
+            'password': $('#register input#regPassword').val(),
+            'email': $('#register input#regEmail').val(),
+            'year': $('#register select#regYear').val(),
+            'gender': $('#register select#regGender').val(),
+            'books': '[{"title" : "Case For Christmas", "author" : "Lee Strobel"},{"title" : "Mere Christianity", "author" : "C.S. Lewis"}]'
+        };
 
-		$.ajax({
-			type: 'POST',
-			data: newUser,
-			url: '/users/registeruser',
-			dataType: 'JSON'
-		}).done(function(response){
+        $.ajax({
+        	type: 'POST',
+        	data: newUser,
+        	url: '/users/registeruser',
+        	dataType: 'JSON'
+        }).done(function(response){
 
-			if(response.msg === ''){
-				$('#register fieldset input').val('');
-				populateTable();
-			}
-			else{
-				alert('Error: ' + response.msg);
-			}
+        	if(response.msg === ''){
+        		$('#register fieldset input').val('');
+        		populateTable();
+        	}
+        	else{
+        		alert('Error: ' + response.msg);
+        	}
 
-		});
+        });
 
-		window.location.href = "/home";
+        window.location.href = "/home";
 
 	}
 	else{
@@ -208,38 +208,6 @@ function addBook(event){
 			}
 
 		});
-
-		window.location.href = "/home";
-=======
-            'fullname': $('#register input#regFullName').val(),
-            'username': $('#register input#regUserName').val(),
-            'password': $('#register input#regPassword').val(),
-            'email': $('#register input#regEmail').val(),
-            'year': $('#register select#regYear').val(),
-            'gender': $('#register select#regGender').val(),
-            'books': '[{"title" : "Case For Christmas", "author" : "Lee Strobel"},{"title" : "Mere Christianity", "author" : "C.S. Lewis"}]'
-        };
-
-        $.ajax({
-        	type: 'POST',
-        	data: newUser,
-        	url: '/users/registeruser',
-        	dataType: 'JSON'
-        }).done(function(response){
-
-        	if(response.msg === ''){
-        		$('#register fieldset input').val('');
-        		populateTable();
-        	}
-        	else{
-        		alert('Error: ' + response.msg);
-        	}
-
-        });
-
-        window.location.href = "/home";
->>>>>>> 329b420b3ebac31147ead9b2ef42c448e20a673c
-
 	}
 	else{
 		alert('Please fill in all fields');
