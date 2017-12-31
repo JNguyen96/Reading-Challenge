@@ -13,30 +13,4 @@ router.get('/register', function(req,res){
 	res.render('register', { title: 'Create an Account'});
 });
 
-router.get('/profile', function(req,res){
-	res.render('profile', { title: 'User Profile' });
-});
-
-/*
- * GET home page
- */
-router.get('/home', function(req,res){
-	// var db = req.db
-	// var collection = db.get('userlist');
-	// var docs = collection.find({});
-	// var keys = 'hello ';
-	// for(key in docs){
-	// 	keys += key.username + ' ';
-	// }
-	// var chartOptions = clone(responses_x_questions);
-
-	// var categories = ["newCat1","newCat2","newCat3","newCat4","newCat5"];
-
-	// chartOptions.xAxis[0].data = categories;
-	// chartOptions.series[0].data = [10,20,30,40,50];
-
-	// res.render('home', { title: 'Express', data: JSON.stringify(chartOptions), userlist : collection });
-	res.render('home', { title: 'A2F Winter Reading Callenge', numUsers : 2});
-});
-
 module.exports = router;

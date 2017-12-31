@@ -12,7 +12,7 @@ var db = monk('localhost:27017/readingTracker');
 var index = require('./routes/index');
 var users = require('./routes/users');
 var profile = require('./routes/profile');
-var home = require('./routes/home');
+var home = require('./routes/home')
 
 var app = express();
 
