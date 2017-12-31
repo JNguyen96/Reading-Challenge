@@ -1,5 +1,24 @@
 extends layout
 block content
+
+	style.
+		ul {
+			list-style-type: none;
+			margin: 0;
+			padding: 0;
+			float: right;
+		}
+		li {
+			display: inline;
+			padding: 10px 10px 10px;
+		}
+
+	ul
+		li
+			a(href='/profile') Profile
+		li
+			a(href='/') Logout
+
 	center
 		h1= title
 		p Check out the stats!!
