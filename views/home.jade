@@ -1,6 +1,7 @@
 extends layout
 block content
 
+
 	style.
 		ul {
 			list-style-type: none;
@@ -10,28 +11,30 @@ block content
 		}
 		li {
 			display: inline;
-			padding: 10px 10px 10px;
+			padding: 10px;
 		}
 
 	ul
 		li
-			a(href='/profile') Profile
+			button#btnProf Profile
 		li
-			a(href='/') Logout
-
-	center
-		h1= title
-		p Check out the stats!!
+			button#btnLogout Logout
 
 	//WRAPPER
 	#wrapper
 
+		center
+			h1 A2F Winter Reading Challenge
+			p Check out the stats!!
+
+	
 		//BAR GRAPH
-		h2 Insert Working Bar Graph Here!!!
-		#barGraph
-			
+		h2 Average Books Read
+
+		
 		// /BAR GRAPH
 
+	
 		//CFC
 		h2 Case for Christmas
 		#cfcList
