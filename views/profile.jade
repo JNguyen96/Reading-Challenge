@@ -1,0 +1,36 @@
+extends layout
+
+block content
+	h1 Full Name.
+	
+	// PROFILE WRAPPER
+	#profileWrapper
+
+		// USER INFO
+		#userInfo
+			h2 User Info
+			p
+				strong Username:
+				|  <span id='username'></span>
+				br
+				strong Email:
+				|  <span id='userEmail'></span>
+				br
+				strong Year:
+				|  <span id='userYear'></span>
+				br
+				strong Gender:
+				|  <span id='userGender'></span>
+		// /USER INFO
+
+		// BOOK TABLE
+		#bookTable
+			h2 Books Read
+			table
+				thead
+					th Title
+					th Author
+				tbody
+		// / BOOK TABLE
+
+	// /PROFILE WRAPPER
