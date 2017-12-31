@@ -23,19 +23,19 @@ function populateTables(){
 
     	userListData = data;
         // For each item in our JSON, add a table row and cells to the content string
-        $.each(data, function(){
-        	if(this.username == "mkang"){
-        		mikeBooks = this.books.length;
+        $.each(data, function(ind, v){
+        	var userBooks = JSON.parse(v.books);
+        	if(v.username == "mkang"){
+        		mikeBooks = userBooks.length;
         	}
         	else{
-        		studentBooks += this.books.length;
+        		studentBooks += userBooks.length;
         	}
-        	this.books.forEach(function(book){
-        		if(book.title == "Case for Christmas"){
-        			readCFC.push(this.fullname);
+        	for (var i = 0; i<userBooks.length; i++){
+        		if(userBooks[i].title == 'Case For Christmas'){
+        			readCFC.push(v.fullname);
         		}
-        	});
-
+        	}
         });
         svmTableContent += '<tr>';
         svmTableContent += '<td>'+ studentBooks +'</td>';
@@ -107,8 +107,8 @@ function addUser(event){
             'email': $('#register input#regEmail').val(),
             'year': $('#register select#regYear').val(),
             'gender': $('#register select#regGender').val(),
-            'books': "[{'title' : 'Case For Christmas', 'author' : 'Lee Strobel'}{'title' : 'Mere Christianity', 'author' : 'C.S. Lewis'}]"
-        }
+            'books': '[{"title" : "Case For Christmas", "author" : "Lee Strobel"},{"title" : "Mere Christianity", "author" : "C.S. Lewis"}]'
+        };
 
         $.ajax({
         	type: 'POST',
