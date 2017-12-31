@@ -40,7 +40,7 @@ function populateTables(){
         	}
         });
         svmTableContent += '<tr>';
-        svmTableContent += '<td>'+ studentBooks +'</td>';
+        svmTableContent += '<td>'+ studentBooks / (userListData.length-1)  +'</td>';
         svmTableContent += '<td>' + mikeBooks + '</td>';
         svmTableContent += '</tr>';
         // Inject the whole content string into our existing HTML table
