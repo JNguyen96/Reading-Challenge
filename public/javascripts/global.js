@@ -103,7 +103,6 @@ function addUser(event){
 
 	if(errorCount === 0){
 		var newUser = {
-<<<<<<< HEAD
 			'fullname': $('#register input#regFullName').val(),
 			'username': $('#register input#regUserName').val(),
 			'password': $('#register input#regPassword').val(),
@@ -142,11 +141,29 @@ function addUser(event){
 function displayUserInfo(){
 	event.preventDefault();
 
+	var user = 0;
+
+	$.getJSON( '/users/userlist', function( data ) {
+		userListData = data;
+
+		$.each(data, function(){
+			if(this.id == currentUserId){
+				user = this;
+			}
+		});
+	});
+
+	for each(userItem in userListData){
+		if(userItem.id == currentUserId){
+			user = userItem;
+		}
+	}
+
 	//Populate Info Box
-	$('#username').text(currentUserId.user);
-	$('#userEmail').text(currentUserId.email);
-	$('#userYear').text(currentUserId.year);
-	$('#userGender').text(currentUserId.gender);
+	$('#username').text(user.username);
+	$('#userEmail').text(user.email);
+	$('#userYear').text(user.year);
+	$('#userGender').text(user.gender);
 }
 
 function displayBooksRead(){
@@ -156,16 +173,22 @@ function displayBooksRead(){
 	var tableContent = '';
 
 	// jQuery AJAX call for JSON
-	$.getJSON( '/profileInfo', function( data ) {
+	$.getJSON( '/users/userlist', function( data ) {
 
-		userBookList = data;
+		var user;
+		userListData = data;
 
 		// For each item in our JSON, add a table row and cells to the content string
 		$.each(data, function(){
-			tableContent += '<tr>';
-			tableContent += '<td>' + this.title + '</td>';
-			tableContent += '<td>' + this.author + '</td>';
-			tableContent += '</tr>';
+			if(this.id == currentUserId){
+				var books = JSON.parse(this.books);
+				for each(book in books){
+					tableContent += '<tr>';
+					tableContent += '<td>' + book.title + '</td>';
+					tableContent += '<td>' + book.author + '</td>';
+					tableContent += '</tr>';
+				}
+			}
 		});
 
 		// Inject the whole content string into our existing HTML table
@@ -192,15 +215,17 @@ function addBook(event){
 			'author': $('#addBook input#bkAuthor').val(),
 		}
 
+		var newBookString = JSON.stringify(newBook);
+
 		$.ajax({
 			type: 'POST',
-			data: newBook,
-			url: '/profile/addbook',
+			data: newBookString,
+			url: '/profile/addbook/' + $(this).attr('rel'),
 			dataType: 'JSON'
 		}).done(function(response){
 
 			if(response.msg === ''){
-				$('#register fieldset input').val('');
+				$('#addBook fieldset input').val('');
 				populateTable();
 			}
 			else{
@@ -208,39 +233,6 @@ function addBook(event){
 			}
 
 		});
-
-		window.location.href = "/home";
-=======
-            'fullname': $('#register input#regFullName').val(),
-            'username': $('#register input#regUserName').val(),
-            'password': $('#register input#regPassword').val(),
-            'email': $('#register input#regEmail').val(),
-            'year': $('#register select#regYear').val(),
-            'gender': $('#register select#regGender').val(),
-            'books': "[{'title' : 'Case For Christmas', 'author' : 'Lee Strobel'}{'title' : 'Mere Christianity', 'author' : 'C.S. Lewis'}]"
-        }
-
-        $.ajax({
-        	type: 'POST',
-        	data: newUser,
-        	url: '/users/registeruser',
-        	dataType: 'JSON'
-        }).done(function(response){
-
-        	if(response.msg === ''){
-        		$('#register fieldset input').val('');
-        		populateTable();
-        	}
-        	else{
-        		alert('Error: ' + response.msg);
-        	}
-
-        });
-
-        window.location.href = "/home";
->>>>>>> 329b420b3ebac31147ead9b2ef42c448e20a673c
-
-	}
 	else{
 		alert('Please fill in all fields');
 		return false;

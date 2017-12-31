@@ -11,6 +11,16 @@ router.get('/', function(req,res){
 /*
  * POST New book to booklist
  */
-router.post('/')
+router.post('/addBook/:id', function(req, res){
+	var db = req.db;
+	var collection = db.get('userlist');
+	var user = req.params.id;
+	for each (userItem in collection){
+		if(userItem.id == user){
+			userItem.books.push(req.body);
+			break;
+		}
+	}
+});
 
 module.exports = router;
