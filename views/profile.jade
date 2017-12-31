@@ -10,22 +10,23 @@ block content
 		}
 		li {
 			display: inline;
-			padding: 10px;
+			padding: 5px;
 		}
 
 	ul
 		li
-			a(href='/home') Home
+			button#btnHome Home
 		li
-			a(href='/') Logout
+			button#btnLogout Logout
 
 	h1 Full Name.
-	
+
+	<span id="currId" rel="#{id}"></span>
+
 	// PROFILE WRAPPER
 	#profileWrapper
 
 		// USER INFO
-		h2 User Info
 		#userInfo
 			p
 				strong Username:

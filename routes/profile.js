@@ -4,8 +4,8 @@ var router = express.Router();
 /*
  * GET Profile page
  */
-router.get('/', function(req,res){
-	res.render('profile', { title: 'User Profile' });
+router.get('/:id', function(req,res){
+	res.render('profile', { title: 'User Profile', id: req.params.id });
 });
 
 /*

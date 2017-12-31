@@ -8,9 +8,4 @@ router.get('/', function(req, res, next) {
   res.render('index', { title: 'A2F Winter Reading Challenge' });
 });
 
-/* GET Register page. */
-router.get('/register', function(req,res){
-	res.render('register', { title: 'Create an Account'});
-});
-
 module.exports = router;

@@ -5,15 +5,19 @@ $(document).ready(function(){
 
 	populateTables();
 
+	displayUserInfo();
+
 	$('#btnLogin').on('click', loginUser);
 
 	$('#btnRegister').on('click', addUser);
 
-	$('#btnProf').on('click', displayUserInfo);
+	$('#btnHome').on('click',goHome);
 
-	$('#btnProf').on('click', displayBooksRead);
+	$('#btnProf').on('click',goToProfile);
 
 	$('#btnAddBook').on('click', addBook);
+
+	$('#btnLogout').on('click',logoutUser);
 
 });
 
@@ -24,6 +28,23 @@ function populateTables(){
 	var studentBooks = 0;
 	var mikeBooks = 0;
 	var readCFC = [];
+	var fb = 0;
+	var numFB = 0;
+	var fs = 0;
+	var numFS = 0;
+	var sob = 0;
+	var numSOB = 0;
+	var sos = 0;
+	var numSOS = 0;
+	var jb = 0;
+	var numJB = 0;
+	var js = 0;
+	var numJS = 0;
+	var sb = 0;
+	var numSB = 0;
+	var ss = 0;
+	var numSS = 0;
+	var currentUserObject;
 
 	$.getJSON( '/users/userlist', function( data ) {
 
@@ -42,6 +63,38 @@ function populateTables(){
         			readCFC.push(v.fullname);
         		}
         	}
+        	if(v.year == 'Freshmen' && v.gender == 'Male'){
+        		fb += userBooks.length;
+        		numFB += 1;
+        	}
+        	else if(v.year == 'Freshmen' && v.gender == 'Female'){
+        		fs += userBooks.length;
+        		numFS += 1;
+        	}
+        	else if(v.year == 'Sophomore' && v.gender == 'Male'){
+        		sob += userBooks.length;
+        		numSOB += 1;
+        	}
+        	else if(v.year == 'Sophomore' && v.gender == 'Female'){
+        		sos += userBooks.length;
+        		numSOS += 1;
+        	}
+        	else if(v.year == 'Junior' && v.gender == 'Male'){
+        		jb += userBooks.length;
+        		numJB += 1;
+        	}
+        	else if(v.year == 'Junior' && v.gender == 'Female'){
+        		js += userBooks.length;
+        		numJS += 1;
+        	}
+        	else if(v.year == 'Senior' && v.gender == 'Male'){
+        		sb += userBooks.length;
+        		numSB += 1;
+        	}
+        	else if(v.year == 'Senior' && v.gender == 'Female'){
+        		ss += userBooks.length;
+        		numSS += 1;
+        	}
         });
         svmTableContent += '<tr>';
         svmTableContent += '<td>'+ studentBooks / (userListData.length-1)  +'</td>';
@@ -55,6 +108,43 @@ function populateTables(){
         	cfcTableContent += '</tr>';
         });
         $('#cfcList table tbody').html(cfcTableContent);
+        if(numFB != 0)
+        	$('#froshB').text((fb/numFB));
+        else
+        	$('#froshB').text(0);
+        if(numFS != 0)
+        	$('#froshS').text(fs/numFS);
+        else
+        	$('#froshS').text(0);
+        if(numSOB != 0)
+        	$('#sophB').text(sob/numSOB);
+        else
+        	$('#sophB').text(0);
+        if(numSOS != 0)
+        	$('#sophS').text(sos/numSOS);
+        else
+        	$('#sophS').text(0);
+        if(numJB != 0)
+        	$('#juniorB').text(jb/numJB);
+        else
+        	$('#juniorB').text(0);
+        if(numJS != 0)
+        	$('#juniorS').text(js/numJS);
+        else
+        	$('#juniorS').text(0);
+        if(numSB != 0)
+        	$('#seniorB').text(sb/numSB);
+        else
+        	$('#seniorB').text(0);
+        if(numSS != 0)
+        	$('#seniorS').text(ss/numSS);
+        else
+        	$('#seniorS').text(0);
+
+        $('#username').text("Justin Nguyen");
+		$('#userEmail').text("gmail.com");
+		$('#userYear').text("Senior");
+		$('#userGender').text("Male");
     });
 
 };
@@ -72,7 +162,7 @@ function loginUser(event){
 		$.each(data, function(i, item){
 			if(item.username === userName && item.password === pass){
 				currentUserId = item._id;
-				window.location.href = "/home";
+				window.location.href = "/profile/" + item._id;
 				success = true;
 				return false;
 			}
@@ -88,6 +178,26 @@ function loginUser(event){
 		}
 	});
 };
+
+function logoutUser(event){
+	event.preventDefault();
+
+	currentUserId = '';
+	window.location.href = "/";
+
+}
+
+function goHome(event){
+	event.preventDefault();
+
+	window.location.href = "/home";
+}
+
+function goToProfile(event){
+	event.preventDefault();
+
+	window.location.href = "/profile";
+}
 
 function addUser(event){
 
@@ -133,7 +243,8 @@ function addUser(event){
 
         });
 
-        window.location.href = "/home";
+        window.location.href = "/";
+        window.alert("Registration Sucessful! Please Sign In");
 
 	}
 	else{
@@ -145,34 +256,25 @@ function addUser(event){
 
 function displayUserInfo(){
 
-	var user_index = 0;
-	var currentUserObject;
-
+	var userId = $('#currId').attr('rel');
 	$.getJSON( '/users/userlist', function( data ) {
-		userListData = data;
 
 		$.each(data, function(index, val){
-			if(val._id == currentUserId){
-				currentUserObject = val;
+			if(val._id == userId){
+				$('#username').text(val.username);
+				$('#userEmail').text(val.email);
+				$('#userYear').text(val.year);
+				$('#userGender').text(val.gender);
 			}
-		})
+		});
+		
 	});
-
-	// // Get Index of object based on id value
-	// var arrayPosition = userListData.map(function(arrayItem) { return arrayItem.username; }).indexOf(currentUserId);
-	//  // Get our User Object
-	// var thisUserObject = userListData[arrayPosition];
-
-	//Populate Info Box
-	$('#userInfo #username').text(currentUserObject.username);
-	$('#userInfo #userEmail').text(currentUserObject.email);
-	$('#userInfo #userYear').text(currentUserObject.year);
-	$('#userInfo #userGender').text(currentUserObject.gender);
-
+	
+	displayBooksRead(userId);
 	
 };
 
-function displayBooksRead(){
+function displayBooksRead(userId){
 
 	// Empty content string
 	var tableContent = '';
@@ -184,7 +286,7 @@ function displayBooksRead(){
 
 		// For each item in our JSON, add a table row and cells to the content string
 		for(var count = 0; count < userListData.length; count++){
-			if(userListData[count]._id == currentUserId){
+			if(userListData[count]._id == userId){
 				var books = JSON.parse(userListData[count].books);
 				for(var b = 0; b < books.length; b++){
 					tableContent += '<tr>';
