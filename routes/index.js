@@ -13,6 +13,10 @@ router.get('/register', function(req,res){
 	res.render('register', { title: 'Create an Account'});
 });
 
+router.get('/profile', function(req,res){
+	res.render('profile', { title: 'User Profile' });
+});
+
 /*
  * GET home page
  */
