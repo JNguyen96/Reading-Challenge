@@ -45,6 +45,7 @@ function populateTables(){
 	var ss = 0;
 	var numSS = 0;
 	var currentUserObject;
+	var numStudents = 0;
 
 	$.getJSON( '/users/userlist', function( data ) {
 
@@ -57,6 +58,7 @@ function populateTables(){
         	}
         	else{
         		studentBooks += userBooks.length;
+        		numStudents += 1;
         	}
         	for (var i = 0; i<userBooks.length; i++){
         		if(userBooks[i].title == 'Case For Christmas'){
@@ -97,7 +99,7 @@ function populateTables(){
         	}
         });
         svmTableContent += '<tr>';
-        svmTableContent += '<td>'+ studentBooks / (userListData.length-1)  +'</td>';
+        svmTableContent += '<td>'+ studentBooks / (numStudents)  +'</td>';
         svmTableContent += '<td>' + mikeBooks + '</td>';
         svmTableContent += '</tr>';
         // Inject the whole content string into our existing HTML table
@@ -223,7 +225,7 @@ function addUser(event){
             'email': $('#register input#regEmail').val(),
             'year': $('#register select#regYear').val(),
             'gender': $('#register select#regGender').val(),
-            'books': '[{"title" : "Case For Christmas", "author" : "Lee Strobel"},{"title" : "Mere Christianity", "author" : "C.S. Lewis"}]'
+            'books': '[]'//'[{"title" : "Case For Christmas", "author" : "Lee Strobel"},{"title" : "Mere Christianity", "author" : "C.S. Lewis"}]'
         };
 
         $.ajax({
@@ -238,7 +240,7 @@ function addUser(event){
         		populateTable();
         	}
         	else{
-        		alert('Error: ' + response.msg);
+        		window.alert('Error: ' + response.msg);
         	}
 
         });
@@ -257,6 +259,7 @@ function addUser(event){
 function displayUserInfo(){
 
 	var userId = $('#currId').attr('rel');
+	currentUserId = userId;
 	$.getJSON( '/users/userlist', function( data ) {
 
 		$.each(data, function(index, val){
@@ -317,26 +320,35 @@ function addBook(event){
 	if(errorCount === 0){
 		var newBook = {
 			'title': $('#addBook input#bkTitle').val(),
-			'author': $('#addBook input#bkAuthor').val(),
+			'author': $('#addBook input#bkAuthor').val()
 		}
+		$.getJSON( '/users/userlist', function ( data ){
 
-		var newBookString = JSON.stringify(newBook);
+			$.each(data, function(int,val){
+				var userBooks = JSON.parse(val.books);
 
-		$.ajax({
-			type: 'POST',
-			data: newBookString,
-			url: '/profile/addbook/' + $(this).attr('rel'),
-			dataType: 'JSON'
-		}).done(function(response){
+				userBooks.push(newBook);
+				var newBookString = JSON.stringify(userBooks);
 
-			if(response.msg === ''){
-				$('#addBook fieldset input').val('');
-				displayBooksRead();
-			}
-			else{
-				alert('Error: ' + response.msg);
-			}
+				$.ajax({
+					type: 'PUT',
+					data: newBookString,
+					url: '/profile/addbook/' + val._id,
+					dataType: 'JSON'
+				}).done(function(response){
+
+					if(response.msg === ''){
+						$('#addBook fieldset input').val('');
+						displayBooksRead(val._id);
+					}
+					else{
+						window.alert('Error: ' + response.msg);
+					}
+				});
+			});
+
 		});
+		
 	}
 	else{
 		alert('Please fill in all fields');

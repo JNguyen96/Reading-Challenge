@@ -9,18 +9,15 @@ router.get('/:id', function(req,res){
 });
 
 /*
- * POST New book to booklist
+ * PUT New book to booklist
  */
-router.post('/addBook/:id', function(req, res){
+router.put('/addBook/:id', function(req, res){
 	var db = req.db;
 	var collection = db.get('userlist');
 	var user = req.params.id;
-	for(var num_users = 0; num_users < collection.length; num_users++){
-		if(collection[num_users]._id == user){
-			collection[num_users].books.push(req.body);
-			break;
-		}
-	}
+	collection.update({ '_id' : user },{$set:{ 'books' : Object.keys(req.body)[0] }}, function(err, result){
+		res.send((err === null) ? {msg: ''} : {msg: err});
+	});
 });
 
 module.exports = router;
