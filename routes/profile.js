@@ -15,9 +15,9 @@ router.post('/addBook/:id', function(req, res){
 	var db = req.db;
 	var collection = db.get('userlist');
 	var user = req.params.id;
-	for each (userItem in collection){
-		if(userItem.id == user){
-			userItem.books.push(req.body);
+	for(var num_users = 0; num_users < collection.length; num_users++){
+		if(collection[num_users]._id == user){
+			collection[num_users].books.push(req.body);
 			break;
 		}
 	}

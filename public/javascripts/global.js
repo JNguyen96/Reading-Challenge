@@ -9,7 +9,11 @@ $(document).ready(function(){
 
 	$('#btnRegister').on('click', addUser);
 
-	// $('#btnAddBook').on('click', addBook);
+	$('#btnProf').on('click', displayUserInfo);
+
+	$('#btnProf').on('click', displayBooksRead);
+
+	$('#btnAddBook').on('click', addBook);
 
 });
 
@@ -139,104 +143,102 @@ function addUser(event){
 
 };
 
-// function displayUserInfo(){
-// 	event.preventDefault();
+function displayUserInfo(){
 
-// 	var user = 0;
+	var user_index = 0;
+	var currentUserObject;
 
-// 	$.getJSON( '/users/userlist', function( data ) {
-// 		userListData = data;
+	$.getJSON( '/users/userlist', function( data ) {
+		userListData = data;
 
-// 		$.each(data, function(){
-// 			if(this.id == currentUserId){
-// 				user = this;
-// 			}
-// 		});
-// 	});
+		$.each(data, function(index, val){
+			if(val._id == currentUserId){
+				currentUserObject = val;
+			}
+		})
+	});
 
-// 	for each(userItem in userListData){
-// 		if(userItem.id == currentUserId){
-// 			user = userItem;
-// 		}
-// 	}
+	// // Get Index of object based on id value
+	// var arrayPosition = userListData.map(function(arrayItem) { return arrayItem.username; }).indexOf(currentUserId);
+	//  // Get our User Object
+	// var thisUserObject = userListData[arrayPosition];
 
-// 	//Populate Info Box
-// 	$('#username').text(user.username);
-// 	$('#userEmail').text(user.email);
-// 	$('#userYear').text(user.year);
-// 	$('#userGender').text(user.gender);
-// };
+	//Populate Info Box
+	$('#userInfo #username').text(currentUserObject.username);
+	$('#userInfo #userEmail').text(currentUserObject.email);
+	$('#userInfo #userYear').text(currentUserObject.year);
+	$('#userInfo #userGender').text(currentUserObject.gender);
 
-// function displayBooksRead(){
-// 	event.preventDefault();
+	
+};
 
-// 	// Empty content string
-// 	var tableContent = '';
+function displayBooksRead(){
 
-// 	// jQuery AJAX call for JSON
-// 	$.getJSON( '/users/userlist', function( data ) {
+	// Empty content string
+	var tableContent = '';
 
-// 		var user;
-// 		userListData = data;
+	// jQuery AJAX call for JSON
+	$.getJSON( '/users/userlist', function( data ) {
 
-// 		// For each item in our JSON, add a table row and cells to the content string
-// 		$.each(data, function(){
-// 			if(this.id == currentUserId){
-// 				var books = JSON.parse(this.books);
-// 				for each(book in books){
-// 					tableContent += '<tr>';
-// 					tableContent += '<td>' + book.title + '</td>';
-// 					tableContent += '<td>' + book.author + '</td>';
-// 					tableContent += '</tr>';
-// 				}
-// 			}
-// 		});
+		userListData = data;
 
-// 		// Inject the whole content string into our existing HTML table
-// 		$('#bookTable table tbody').html(tableContent);
+		// For each item in our JSON, add a table row and cells to the content string
+		for(var count = 0; count < userListData.length; count++){
+			if(userListData[count]._id == currentUserId){
+				var books = JSON.parse(userListData[count].books);
+				for(var b = 0; b < books.length; b++){
+					tableContent += '<tr>';
+					tableContent += '<td>' + books[b].title + '</td>';
+					tableContent += '<td>' + books[b].author + '</td>';
+					tableContent += '</tr>';
+				}
+			}
+		}
 
-// 	});
-// };
+		// Inject the whole content string into our existing HTML table
+		$('#bookTable table tbody').html(tableContent);
 
-// function addBook(event){
+	});
+};
 
-// 	event.preventDefault();
+function addBook(event){
 
-// 	var errorCount = 0;
-// 	$('#addBook input').each(function(index, val){
-// 		if($(this).val() === ''){
-// 			errorCount++;
-// 		}
-// 	});
+	event.preventDefault();
 
-// 	if(errorCount === 0){
-// 		var newBook = {
-// 			'title': $('#addBook input#bkTitle').val(),
-// 			'author': $('#addBook input#bkAuthor').val(),
-// 		}
+	var errorCount = 0;
+	$('#addBook input').each(function(index, val){
+		if($(this).val() === ''){
+			errorCount++;
+		}
+	});
 
-// 		var newBookString = JSON.stringify(newBook);
+	if(errorCount === 0){
+		var newBook = {
+			'title': $('#addBook input#bkTitle').val(),
+			'author': $('#addBook input#bkAuthor').val(),
+		}
 
-// 		$.ajax({
-// 			type: 'POST',
-// 			data: newBookString,
-// 			url: '/profile/addbook/' + $(this).attr('rel'),
-// 			dataType: 'JSON'
-// 		}).done(function(response){
+		var newBookString = JSON.stringify(newBook);
 
-// 			if(response.msg === ''){
-// 				$('#addBook fieldset input').val('');
-// 				populateTable();
-// 			}
-// 			else{
-// 				alert('Error: ' + response.msg);
-// 			}
+		$.ajax({
+			type: 'POST',
+			data: newBookString,
+			url: '/profile/addbook/' + $(this).attr('rel'),
+			dataType: 'JSON'
+		}).done(function(response){
 
-// 		});
-// 	}
-// 	else{
-// 		alert('Please fill in all fields');
-// 		return false;
-// 	}
-// };
+			if(response.msg === ''){
+				$('#addBook fieldset input').val('');
+				displayBooksRead();
+			}
+			else{
+				alert('Error: ' + response.msg);
+			}
+		});
+	}
+	else{
+		alert('Please fill in all fields');
+		return false;
+	}
+};
 

@@ -7,8 +7,8 @@ block content
 	#profileWrapper
 
 		// USER INFO
+		h2 User Info
 		#userInfo
-			h2 User Info
 			p
 				strong Username:
 				|  <span id='username'></span>
@@ -24,8 +24,8 @@ block content
 		// /USER INFO
 
 		// BOOK TABLE
+		h2 Books Read
 		#bookTable
-			h2 Books Read
 			table
 				thead
 					th Title
@@ -34,17 +34,17 @@ block content
 		// / BOOK TABLE
 
 		// ADD BOOK
-		#addBook
 		h4 Add a new book!
+		#addBook
 			form(action='/profile',method='post')
 				p
 					label 
-						| Full Name 
-						input#bkTitle(type='text',name='user[name]',placeholder='Full Name',required)
+						| Title 
+						input#bkTitle(type='text',name='user[name]',placeholder='Title',required)
 				p
 					label 
-						| Username 
-						input#bkAuthor(type='text',name='user[name]',placeholder='Username',required)
-			button#btnAddBook Create Account
+						| Author 
+						input#bkAuthor(type='text',name='user[name]',placeholder='Author',required)
+			button#btnAddBook Add Book!
 
 	// /PROFILE WRAPPER
