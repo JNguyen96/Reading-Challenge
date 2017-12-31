@@ -1,19 +1,36 @@
 extends layout
-
 block content
 	center
 		h1= title
 		p Check out the stats!!
 
-		// WRAPPER
-		#wrapper
+	//WRAPPER
+	#wrapper
 
-
-			// Challege 1
-			#challenge1
-				h2 Number of Users: #{locals.numUsers}
-
+		//BAR GRAPH
+		h2 Insert Working Bar Graph Here!!!
+		#barGraph
 			
+		// /BAR GRAPH
 
-		// /WRAPPER
-  
+		//CFC
+		h2 Case for Christmas
+		#cfcList
+			table
+				thead
+					th Read Case for Christmas
+				tbody
+		// /CFC
+
+
+		//SVM
+		h2 Students vs Mike Kang
+		#svmList
+			table
+				thead
+					th Average books read by students
+					th Books read by Mike
+				tbody
+		// /SVM
+
+	// /WRAPPER
