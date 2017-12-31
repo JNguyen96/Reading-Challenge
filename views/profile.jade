@@ -35,7 +35,16 @@ block content
 
 		// ADD BOOK
 		#addBook
-			h4 Add a new book!
-			
+		h4 Add a new book!
+			form(action='/profile',method='post')
+				p
+					label 
+						| Full Name 
+						input#bkTitle(type='text',name='user[name]',placeholder='Full Name',required)
+				p
+					label 
+						| Username 
+						input#bkAuthor(type='text',name='user[name]',placeholder='Username',required)
+			button#btnAddBook Create Account
 
 	// /PROFILE WRAPPER

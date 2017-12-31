@@ -25,19 +25,19 @@ function populateTables(){
 
     	userListData = data;
         // For each item in our JSON, add a table row and cells to the content string
-        $.each(data, function(){
-        	if(this.username == "mkang"){
-        		mikeBooks = this.books.length;
+        $.each(data, function(ind, v){
+        	var userBooks = JSON.parse(v.books);
+        	if(v.username == "mkang"){
+        		mikeBooks = userBooks.length;
         	}
         	else{
-        		studentBooks += this.books.length;
+        		studentBooks += userBooks.length;
         	}
-        	this.books.forEach(function(book){
-        		if(book.title == "Case for Christmas"){
-        			readCFC.push(this.fullname);
+        	for (var i = 0; i<userBooks.length; i++){
+        		if(userBooks[i].title == 'Case For Christmas'){
+        			readCFC.push(v.fullname);
         		}
-        	});
-
+        	}
         });
         svmTableContent += '<tr>';
         svmTableContent += '<td>'+ studentBooks +'</td>';
