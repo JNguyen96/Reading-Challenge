@@ -1,4 +1,4 @@
-var express = require('express');
+ var express = require('express');
 var path = require('path');
 var favicon = require('serve-favicon');
 var logger = require('morgan');
@@ -35,8 +35,8 @@ app.use(function(req,res,next){
 
 app.use('/', index);
 app.use('/users', users);
+app.use('/home', home);
 app.use('/profile', profile);
-app.use('/home',home);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

@@ -11,16 +11,17 @@ a {
   color: #00B7FF;
 }
 
+
 #userInfo {
 	width:250px;
 	position:absolute;
 	top:0; left:0;
 }
-	#userInfo p {
-		padding:15px;
-		border:1px solid #CCC;
-		background:rgba(80,120,255,0.05);
-	}
+#userInfo p {
+	padding:15px;
+	border:1px solid #CCC;
+	background:rgba(80,120,255,0.05);
+}
 
 #profileWrapper {
 	padding-left:312px;

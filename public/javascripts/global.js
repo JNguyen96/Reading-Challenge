@@ -9,7 +9,7 @@ $(document).ready(function(){
 
 	$('#btnRegister').on('click', addUser);
 
-	$('#btnAddBook').on('click', addBook);
+	// $('#btnAddBook').on('click', addBook);
 
 });
 
@@ -53,7 +53,7 @@ function populateTables(){
         $('#cfcList table tbody').html(cfcTableContent);
     });
 
-}
+};
 
 function loginUser(event){
 	event.preventDefault();
@@ -139,80 +139,104 @@ function addUser(event){
 
 };
 
-function displayUserInfo(){
-	event.preventDefault();
+// function displayUserInfo(){
+// 	event.preventDefault();
 
-	//Populate Info Box
-	$('#username').text(currentUserId.user);
-	$('#userEmail').text(currentUserId.email);
-	$('#userYear').text(currentUserId.year);
-	$('#userGender').text(currentUserId.gender);
-}
+// 	var user = 0;
 
-function displayBooksRead(){
-	event.preventDefault();
+// 	$.getJSON( '/users/userlist', function( data ) {
+// 		userListData = data;
 
-	// Empty content string
-	var tableContent = '';
+// 		$.each(data, function(){
+// 			if(this.id == currentUserId){
+// 				user = this;
+// 			}
+// 		});
+// 	});
 
-	// jQuery AJAX call for JSON
-	$.getJSON( '/profileInfo', function( data ) {
+// 	for each(userItem in userListData){
+// 		if(userItem.id == currentUserId){
+// 			user = userItem;
+// 		}
+// 	}
 
-		userBookList = data;
+// 	//Populate Info Box
+// 	$('#username').text(user.username);
+// 	$('#userEmail').text(user.email);
+// 	$('#userYear').text(user.year);
+// 	$('#userGender').text(user.gender);
+// };
 
-		// For each item in our JSON, add a table row and cells to the content string
-		$.each(data, function(){
-			tableContent += '<tr>';
-			tableContent += '<td>' + this.title + '</td>';
-			tableContent += '<td>' + this.author + '</td>';
-			tableContent += '</tr>';
-		});
+// function displayBooksRead(){
+// 	event.preventDefault();
 
-		// Inject the whole content string into our existing HTML table
-		$('#bookTable table tbody').html(tableContent);
+// 	// Empty content string
+// 	var tableContent = '';
 
-	});
+// 	// jQuery AJAX call for JSON
+// 	$.getJSON( '/users/userlist', function( data ) {
 
-}
+// 		var user;
+// 		userListData = data;
 
-function addBook(event){
+// 		// For each item in our JSON, add a table row and cells to the content string
+// 		$.each(data, function(){
+// 			if(this.id == currentUserId){
+// 				var books = JSON.parse(this.books);
+// 				for each(book in books){
+// 					tableContent += '<tr>';
+// 					tableContent += '<td>' + book.title + '</td>';
+// 					tableContent += '<td>' + book.author + '</td>';
+// 					tableContent += '</tr>';
+// 				}
+// 			}
+// 		});
 
-	event.preventDefault();
+// 		// Inject the whole content string into our existing HTML table
+// 		$('#bookTable table tbody').html(tableContent);
 
-	var errorCount = 0;
-	$('#addBook input').each(function(index, val){
-		if($(this).val() === ''){
-			errorCount++;
-		}
-	});
+// 	});
+// };
 
-	if(errorCount === 0){
-		var newBook = {
-			'title': $('#addBook input#bkTitle').val(),
-			'author': $('#addBook input#bkAuthor').val(),
-		}
+// function addBook(event){
 
-		$.ajax({
-			type: 'POST',
-			data: newBook,
-			url: '/profile/addbook',
-			dataType: 'JSON'
-		}).done(function(response){
+// 	event.preventDefault();
 
-			if(response.msg === ''){
-				$('#register fieldset input').val('');
-				populateTable();
-			}
-			else{
-				alert('Error: ' + response.msg);
-			}
+// 	var errorCount = 0;
+// 	$('#addBook input').each(function(index, val){
+// 		if($(this).val() === ''){
+// 			errorCount++;
+// 		}
+// 	});
 
-		});
-	}
-	else{
-		alert('Please fill in all fields');
-		return false;
-	}
+// 	if(errorCount === 0){
+// 		var newBook = {
+// 			'title': $('#addBook input#bkTitle').val(),
+// 			'author': $('#addBook input#bkAuthor').val(),
+// 		}
 
-};
+// 		var newBookString = JSON.stringify(newBook);
+
+// 		$.ajax({
+// 			type: 'POST',
+// 			data: newBookString,
+// 			url: '/profile/addbook/' + $(this).attr('rel'),
+// 			dataType: 'JSON'
+// 		}).done(function(response){
+
+// 			if(response.msg === ''){
+// 				$('#addBook fieldset input').val('');
+// 				populateTable();
+// 			}
+// 			else{
+// 				alert('Error: ' + response.msg);
+// 			}
+
+// 		});
+// 	}
+// 	else{
+// 		alert('Please fill in all fields');
+// 		return false;
+// 	}
+// };
 
