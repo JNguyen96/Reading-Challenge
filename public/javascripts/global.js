@@ -61,7 +61,7 @@ function populateTables(){
         		numStudents += 1;
         	}
         	for (var i = 0; i<userBooks.length; i++){
-        		if(userBooks[i].title == 'Case For Christmas'){
+        		if(userBooks[i].title == 'Case for Christmas'){
         			readCFC.push(v.fullname);
         		}
         	}
@@ -142,11 +142,6 @@ function populateTables(){
         	$('#seniorS').text(ss/numSS);
         else
         	$('#seniorS').text(0);
-
-        $('#username').text("Justin Nguyen");
-		$('#userEmail').text("gmail.com");
-		$('#userYear').text("Senior");
-		$('#userGender').text("Male");
     });
 
 };
@@ -191,14 +186,14 @@ function logoutUser(event){
 
 function goHome(event){
 	event.preventDefault();
-
-	window.location.href = "/home";
+	var userId = $('#currId').attr('rel');
+	window.location.href = "/home/"+userId;
 }
 
 function goToProfile(event){
 	event.preventDefault();
-
-	window.location.href = "/profile";
+	var profId = $('#currHomeId').attr('rel');
+	window.location.href = "/profile/"+profId;
 }
 
 function addUser(event){
@@ -264,6 +259,7 @@ function displayUserInfo(){
 
 		$.each(data, function(index, val){
 			if(val._id == userId){
+				$('#fullName').text(val.fullname);
 				$('#username').text(val.username);
 				$('#userEmail').text(val.email);
 				$('#userYear').text(val.year);
@@ -318,6 +314,7 @@ function addBook(event){
 	});
 
 	if(errorCount === 0){
+		var userId = $('#currId').attr('rel');
 		var newBook = {
 			'title': $('#addBook input#bkTitle').val(),
 			'author': $('#addBook input#bkAuthor').val()
@@ -325,26 +322,31 @@ function addBook(event){
 		$.getJSON( '/users/userlist', function ( data ){
 
 			$.each(data, function(int,val){
-				var userBooks = JSON.parse(val.books);
+				if(val._id == userId){
+					var userBooks = JSON.parse(val.books);
 
-				userBooks.push(newBook);
-				var newBookString = JSON.stringify(userBooks);
+					userBooks.push(newBook);
+					var newBookString = JSON.stringify(userBooks);
 
-				$.ajax({
-					type: 'PUT',
-					data: newBookString,
-					url: '/profile/addbook/' + val._id,
-					dataType: 'JSON'
-				}).done(function(response){
+					$('#addBook input#bkTitle').text("");
+					$('#addBook input#bkAuthor').text("");
 
-					if(response.msg === ''){
-						$('#addBook fieldset input').val('');
-						displayBooksRead(val._id);
-					}
-					else{
-						window.alert('Error: ' + response.msg);
-					}
-				});
+					$.ajax({
+						type: 'PUT',
+						data: newBookString,
+						url: '/profile/addbook/' + val._id,
+						dataType: 'JSON'
+					}).done(function(response){
+
+						if(response.msg === ''){
+							$('#addBook fieldset input').val('');
+							displayBooksRead(val._id);
+						}
+						else{
+							window.alert('Error: ' + response.msg);
+						}
+					});
+				}
 			});
 
 		});
