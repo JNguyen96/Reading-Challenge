@@ -11,39 +11,39 @@ block content
 			h2 Please Enter your User Information
 			#register
 				form(action='/register',method='post')
-					p
-						label 
-							| Full Name 
-							input#regFullName(type='text',name='user[name]',placeholder='Full Name',required)
-					p
-						label 
-							| Username 
-							input#regUserName(type='text',name='user[username]',placeholder='Username',required)
-					p
-						label 
-							| Password 
-							input#regPassword(type='password',name='user[password]',placeholder='Password',required)
-					p
-						label 
-							| Email 
-							input#regEmail(type='email',name='user[email]',placeholder='Email Address',required)
-					p
-						label 
-							| Year 
-							select#regYear(name='Year',required)
-								option(selected disabled) Year
-								option Freshman
-								option Sophomore
-								option Junior
-								option Senior
-								option Post-Grad
-					p
-						label 
-							| Gender 
-							select#regGender(name='Gender',required)
-								option(selected disabled) Gender
-								option Male
-								option Female
+						p
+							label 
+								| Full Name 
+								input#regFullName(type='text',name='user[name]',placeholder='Full Name',required)
+						p
+							label 
+								| Username 
+								input#regUserName(type='text',name='user[username]',placeholder='Username',required)
+						p
+							label 
+								| Password 
+								input#regPassword(type='password',name='user[password]',placeholder='Password',required)
+						p
+							label 
+								| Email 
+								input#regEmail(type='email',name='user[email]',placeholder='Email Address',required)
+						p
+							label 
+								| Year 
+								select#regYear(name='Year',required)
+									option(selected disabled) Year
+									option Freshman
+									option Sophomore
+									option Junior
+									option Senior
+									option Post-Grad
+						p
+							label 
+								| Gender 
+								select#regGender(name='Gender',required)
+									option(selected disabled) Gender
+									option Male
+									option Female
 				button#btnRegister Create Account
 
 		// /WRAPPER
