@@ -336,7 +336,7 @@ function addBook(event){
 					$.ajax({
 						type: 'PUT',
 						data: newBookString,
-						url: '/profile/addbook/' + val._id,
+						url: '/users/profile/addbook/' + val._id,
 						dataType: 'JSON'
 					}).done(function(response){
 
