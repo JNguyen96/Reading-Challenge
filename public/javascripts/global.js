@@ -61,7 +61,7 @@ function populateTables(){
         		numStudents += 1;
         	}
         	for (var i = 0; i<userBooks.length; i++){
-        		if(userBooks[i].title == 'Case For Christmas'){
+        		if(userBooks[i].title == 'Case for Christmas'){
         			readCFC.push(v.fullname);
         		}
         	}
@@ -142,11 +142,6 @@ function populateTables(){
         	$('#seniorS').text(ss/numSS);
         else
         	$('#seniorS').text(0);
-
-        $('#username').text("Justin Nguyen");
-		$('#userEmail').text("gmail.com");
-		$('#userYear').text("Senior");
-		$('#userGender').text("Male");
     });
 
 };
@@ -199,12 +194,14 @@ function goToProfile(event){
 
 	var userId = $('#currId').attr('rel');
 	window.location.href = "/users/profile/" + userId;
+
 }
 
 function addUser(event){
 
 	event.preventDefault();
 
+	var uniqueName = true;
 	var errorCount = 0;
 	$('#register input').each(function(index, val){
 		if($(this).val() === ''){
@@ -217,7 +214,18 @@ function addUser(event){
 		}
 	});
 
-	if(errorCount === 0){
+	for(var i = 0; i < userListData.length; i++){
+		if($('#register input#regUserName').val() == userListData[i].username){
+			window.alert('This username has been taken!');
+			uniqueName = false
+			return false;
+		}
+	}
+	if($('#register input#regPassword').val().length < 6){
+		window.alert('Password must be at least 6 characters long.');
+		return false;
+	}
+	else if(errorCount === 0 && uniqueName){
 		var newUser = {
 			'fullname': $('#register input#regFullName').val(),
             'username': $('#register input#regUserName').val(),
@@ -263,6 +271,7 @@ function displayUserInfo(){
 
 		$.each(data, function(index, val){
 			if(val._id == userId){
+				$('#fullName').text(val.fullname);
 				$('#username').text(val.username);
 				$('#userEmail').text(val.email);
 				$('#userYear').text(val.year);
@@ -319,6 +328,7 @@ function addBook(event){
 	});
 
 	if(errorCount === 0){
+		var userId = $('#currId').attr('rel');
 		var newBook = {
 			'title': $('#addBook input#bkTitle').val(),
 			'author': $('#addBook input#bkAuthor').val()
@@ -332,10 +342,13 @@ function addBook(event){
 					userBooks.push(newBook);
 					var newBookString = JSON.stringify(userBooks);
 
+					$('#addBook input#bkTitle').text("");
+					$('#addBook input#bkAuthor').text("");
+
 					$.ajax({
 						type: 'PUT',
 						data: newBookString,
-						url: '/users/addbook/' + val._id,
+						url: '/users/profile/addbook/' + val._id,
 						dataType: 'JSON'
 					}).done(function(response){
 
