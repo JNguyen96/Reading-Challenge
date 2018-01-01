@@ -1,5 +1,4 @@
 var userListData = [];
-var currentUserId = '';
 
 $(document).ready(function(){
 
@@ -50,6 +49,7 @@ function populateTables(){
 	$.getJSON( '/users/userlist', function( data ) {
 
     	userListData = data;
+
         // For each item in our JSON, add a table row and cells to the content string
         $.each(data, function(ind, v){
         	var userBooks = JSON.parse(v.books);
@@ -158,8 +158,7 @@ function loginUser(event){
 
 		$.each(data, function(i, item){
 			if(item.username === userName && item.password === pass){
-				currentUserId = item._id;
-				window.location.href = "/profile/" + item._id;
+				window.location.href = "/users/profile/" + item._id;
 				success = true;
 				return false;
 			}
@@ -179,21 +178,23 @@ function loginUser(event){
 function logoutUser(event){
 	event.preventDefault();
 
-	currentUserId = '';
 	window.location.href = "/";
 
 }
 
 function goHome(event){
 	event.preventDefault();
+	
 	var userId = $('#currId').attr('rel');
-	window.location.href = "/home/"+userId;
+	window.location.href = "/home/" + userId;
 }
 
 function goToProfile(event){
 	event.preventDefault();
-	var profId = $('#currHomeId').attr('rel');
-	window.location.href = "/profile/"+profId;
+
+	var userId = $('#currId').attr('rel');
+	window.location.href = "/users/profile/" + userId;
+
 }
 
 function addUser(event){
@@ -254,7 +255,6 @@ function addUser(event){
 function displayUserInfo(){
 
 	var userId = $('#currId').attr('rel');
-	currentUserId = userId;
 	$.getJSON( '/users/userlist', function( data ) {
 
 		$.each(data, function(index, val){
@@ -305,6 +305,8 @@ function displayBooksRead(userId){
 function addBook(event){
 
 	event.preventDefault();
+
+	var userId = $('#currId').attr('rel');
 
 	var errorCount = 0;
 	$('#addBook input').each(function(index, val){

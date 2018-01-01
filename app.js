@@ -11,7 +11,6 @@ var db = monk('localhost:27017/readingTracker');
 
 var index = require('./routes/index');
 var users = require('./routes/users');
-var profile = require('./routes/profile');
 var home = require('./routes/home');
 var register = require('./routes/register');
 
@@ -37,7 +36,6 @@ app.use(function(req,res,next){
 app.use('/', index);
 app.use('/users', users);
 app.use('/home', home);
-app.use('/profile', profile);
 app.use('/register', register);
 
 // catch 404 and forward to error handler
