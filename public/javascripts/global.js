@@ -201,6 +201,7 @@ function addUser(event){
 
 	event.preventDefault();
 
+	var uniqueName = true;
 	var errorCount = 0;
 	$('#register input').each(function(index, val){
 		if($(this).val() === ''){
@@ -213,7 +214,18 @@ function addUser(event){
 		}
 	});
 
-	if(errorCount === 0){
+	for(var i = 0; i < userListData.length; i++){
+		if($('#register input#regUserName').val() == userListData[i].username){
+			window.alert('This username has been taken!');
+			uniqueName = false
+			return false;
+		}
+	}
+	if($('#register input#regPassword').val().length < 6){
+		window.alert('Password must be at least 6 characters long.');
+		return false;
+	}
+	else if(errorCount === 0 && uniqueName){
 		var newUser = {
 			'fullname': $('#register input#regFullName').val(),
             'username': $('#register input#regUserName').val(),
