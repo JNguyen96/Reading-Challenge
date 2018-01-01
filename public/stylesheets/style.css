@@ -17,13 +17,18 @@ a {
 	position:absolute;
 	top:0; left:0;
 }
-#userInfo p {
-	padding:15px;
-	border:1px solid #CCC;
-	background:rgba(80,120,255,0.05);
-}
+	#userInfo p {
+		padding:15px;
+		border:1px solid #CCC;
+		background:rgba(80,120,255,0.05);
+	}
 
 #profileWrapper {
+	padding-left:312px;
+	position:relative;
+}
+
+#chartWrapper {
 	padding-left:312px;
 	position:relative;
 }
@@ -83,7 +88,10 @@ a {
 																					       		     text-align:center;
 																							       }
 #cfcList {
-	  margin:0 0 30px 0;
+	  margin:0 30px 30px 0;
+	  width: 750px;
+	  top: 0; left: 0;
+	  position: absolute;
 }
 	#cfcList table {
 		  border-collapse:separate;
