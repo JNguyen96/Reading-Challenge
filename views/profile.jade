@@ -57,14 +57,15 @@ block content
 		h4 Add a new book!
 		#addBook
 			form(action='/profile',method='post')
-				p
-					label 
-						| Title 
-						input#bkTitle(type='text',name='user[name]',placeholder='Title',required)
-				p
-					label 
-						| Author 
-						input#bkAuthor(type='text',name='user[name]',placeholder='Author',required)
+				fieldset
+					p
+						label 
+							| Title 
+							input#bkTitle(type='text',name='user[name]',placeholder='Title',required)
+					p
+						label 
+							| Author 
+							input#bkAuthor(type='text',name='user[name]',placeholder='Author',required)
 			button#btnAddBook Add Book!
 
 	// /PROFILE WRAPPER
