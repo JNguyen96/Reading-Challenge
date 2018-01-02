@@ -1,5 +1,5 @@
 body {
-  padding: 30px;
+  padding-left: 30px;
   font: 16px Times, Arial, sans-serif;
   background-image: url("fallingSnow4.jpg");
   background-color: #c2c2d6
@@ -64,16 +64,15 @@ a {
 			}
 
 #wrapper {
-	 padding-left:0px;
-	 padding-top: 20px;
+	 padding-left:200px;
+	 padding-top: 5px;
 	 position:relative;
 }
 
 #cfcList {
-	  margin:0 0px 30px 0;
-	  width: 750px;
-	  top: 0; left: 0;
-	  position: absolute;
+	margin:0 0px 30px 0;
+	top: 0; left: 0;
+	position: absolute;
 }
 	#cfcList table {
 		border-collapse:separate;
