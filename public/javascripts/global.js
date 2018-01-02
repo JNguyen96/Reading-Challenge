@@ -43,6 +43,11 @@ function populateTables(){
 	var numSB = 0;
 	var ss = 0;
 	var numSS = 0;
+	// TO ADD POST GRADS TO BAR GRAPH
+	// var pgb = 0;
+	// var numPGB = 0;
+	// var pgs = 0;
+	// var numPGS = 0;
 	var currentUserObject;
 	var numStudents = 0;
 
@@ -61,7 +66,7 @@ function populateTables(){
         		numStudents += 1;
         	}
         	for (var i = 0; i<userBooks.length; i++){
-        		if(userBooks[i].title == 'Case for Christmas'){
+        		if(userBooks[i].title.toLowerCase() == 'case for christmas'){
         			readCFC.push(v.fullname);
         		}
         	}
@@ -97,9 +102,18 @@ function populateTables(){
         		ss += userBooks.length;
         		numSS += 1;
         	}
+        	// TO ADD POST GRADS TO BAR GRAPH
+        	// else if(v.year == 'Post-Grad' && v.gender == 'Male'){
+        	// 	pgb += userBooks.length;
+        	// 	numPGB += 1;
+        	// }
+        	// else if(v.year == 'Post-Grad' && v.gender == 'Female'){
+        	// 	pgs += userBooks.length;
+        	// 	numPGS += 1;
+        	// }
         });
         svmTableContent += '<tr>';
-        svmTableContent += '<td>'+ studentBooks / (numStudents)  +'</td>';
+        svmTableContent += '<td>'+ (Math.round((studentBooks / (numStudents)) * 100) / 100) +'</td>';
         svmTableContent += '<td>' + mikeBooks + '</td>';
         svmTableContent += '</tr>';
         // Inject the whole content string into our existing HTML table
@@ -142,6 +156,15 @@ function populateTables(){
         	$('#seniorS').text(ss/numSS);
         else
         	$('#seniorS').text(0);
+        // TO ADD POST GRADS TO BAR GRAPH
+        // if(numPGB != 0)
+        // 	$('#postgradB').text(pgb/numPGB);
+        // else
+        // 	$('#postgradB').text(0);
+        // if(numSS != 0)
+        // 	$('#postgradS').text(pgs/numPGS);
+        // else
+        // 	$('#postgradS').text(0);
     });
 
 };
@@ -299,6 +322,7 @@ function displayBooksRead(userId){
 		for(var count = 0; count < userListData.length; count++){
 			if(userListData[count]._id == userId){
 				var books = JSON.parse(userListData[count].books);
+				$('#numBooks').text("Books Read: " + books.length);
 				for(var b = 0; b < books.length; b++){
 					tableContent += '<tr>';
 					tableContent += '<td>' + books[b].title + '</td>';

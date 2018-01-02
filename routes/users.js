@@ -25,9 +25,6 @@ router.get('/userlist', function(req, res, next) {
  * GET Profile page
  */
 router.get('/profile/:id', function(req,res){
-	var db = req.db;
-	var collection = db.get('userlist');
-
 	res.render('profile', { title: 'User Profile', id: req.params.id });
 });
 

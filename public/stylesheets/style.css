@@ -1,6 +1,8 @@
 body {
   padding: 30px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  font: 16px Times, Arial, sans-serif;
+  background-image: url("fallingSnow4.jpg");
+  background-color: #c2c2d6
 }
 
 h2 {
@@ -19,8 +21,8 @@ a {
 }
 	#userInfo p {
 		padding:15px;
-		border:1px solid #CCC;
-		background:rgba(80,120,255,0.05);
+		border:1px solid #47476b;
+		background:#ccebff;
 	}
 
 #profileWrapper {
@@ -38,14 +40,16 @@ a {
 }
 	#bookTable table {
 		border-collapse:separate;
-		border-spacing:1px;
+		border-spacing: 0px;
+		border: 0.5px solid #47476b;
 		background:#CCC;
 	}
 		#bookTable table th {
-			background:#EEE;
+			background:linear-gradient(to left, rgba(0,153,255,0.25), rgba(0,153,255,1));
+			border: 0.5px solid #47476b;
 			font-weight:600;
 			padding:10px 20px;
-			text-align:center;
+			text-align:left;
 		}
 		#bookTable table tbody {
 			padding:0; margin:0;
@@ -53,91 +57,76 @@ a {
 			border-spacing:0px;
 		}
 			#bookTable table td {
-				background:#FFF;
+				background:#ccebff;
 				padding:5px 10px;
-				text-align:center;
+				border: 0.5px solid #47476b;
+				text-align:left;
 			}
+
 #wrapper {
 	 padding-left:0px;
-	 padding-top: 50px;
+	 padding-top: 20px;
 	 position:relative;
 }
 
-#userList {
-	  margin:0 0 30px 0;
-}
-	#userList table {
-		  border-collapse:separate;
-			border-spacing:1px;
-				background:#CCC;
-				}
-					#userList table th {
-						  	background:#EEE;
-									font-weight:600;
-											padding:10px 20px;
-													text-align:center;
-														}
-															#userList table tbody {
-																  	padding:0; margin:0;
-																		    border-collapse:collapse;
-																		      border-spacing:0px;
-																		       }
-																		         #userList table td {
-																			 	   	    background:#FFF;
-																					       padding:5px 10px;
-																					       		     text-align:center;
-																							       }
 #cfcList {
-	  margin:0 30px 30px 0;
+	  margin:0 0px 30px 0;
 	  width: 750px;
 	  top: 0; left: 0;
 	  position: absolute;
 }
 	#cfcList table {
-		  border-collapse:separate;
-			border-spacing:1px;
-				background:#CCC;
+		border-collapse:separate;
+		border-spacing:0px;
+		border: 0.5px solid #47476b;
+		background:#CCC;
+	}
+		#cfcList table th {
+			background:linear-gradient(to left, rgba(0,153,255,0.25), rgba(0,153,255,1));
+			border: 0.5px solid #47476b;
+			font-weight:600;
+			padding:10px 20px;
+			text-align:center;
+		}
+			#cfcList table tbody {
+				padding:0; margin:0;
+				border-collapse:collapse;
+				border-spacing:0px;
+			}
+				#cfcList table td {
+					background:#ccebff;
+					border: 0.5px solid #47476b;
+					padding:5px 10px;
+					text-align:center;
 				}
-					#cfcList table th {
-						  	background:#EEE;
-									font-weight:600;
-											padding:10px 20px;
-													text-align:center;
-														}
-															#cfcList table tbody {
-																  	padding:0; margin:0;
-																		    border-collapse:collapse;
-																		      border-spacing:0px;
-																		       }
-																		         #cfcList table td {
-																			 	   	    background:#FFF;
-																					       padding:5px 10px;
-																					       		     text-align:center;
-																							       }
+
 #svmList {
-	  margin:0 0 30px 0;
+	margin:0 0 30px 0;
 }
 	#svmList table {
-		  border-collapse:separate;
-			border-spacing:1px;
-				background:#CCC;
-				}
-					#svmList table th {
-						  	background:#EEE;
-									font-weight:600;
-											padding:10px 20px;
-													text-align:center;
-														}
-															#svmList table tbody {
-																  	padding:0; margin:0;
-																		    border-collapse:collapse;
-																		      border-spacing:0px;
-																		       }
-																		         #svmList table td {
-																			 	   	    background:#FFF;
-																					       padding:5px 10px;
-																					       		     text-align:center;
-																							       }																							       
+		border-collapse:separate;
+		border-spacing:0px;
+		border: 0.5px solid #47476b;
+		background:#CCC;
+	}
+		#svmList table th {
+			background:linear-gradient(to left, rgba(0,153,255,0.25), rgba(0,153,255,1));
+			border: 0.5px solid #47476b;
+			font-weight:600;
+			padding:10px 20px;
+			text-align:center;
+		}
+			#svmList table tbody {
+				padding:0; margin:0;
+				border-collapse:collapse;
+				border-spacing:0px;
+			}
+				#svmList table td {
+					background:#ccebff;
+					border: 0.5px solid #47476b;
+					padding:5px 10px;
+					text-align:center;
+				}																							       
 
 fieldset {
 	 border:0;
