@@ -1,0 +1,25 @@
+extends layout
+
+block content
+	center
+		h1= title
+		p Let's make Mike shave his head!
+
+		// WRAPPER
+		#wrapper
+
+
+			// LOGIN
+			h2 Please Login
+			#login
+				input#loginUserName(type='text', placeholder='Username')
+				br
+				input#loginPassword(type='password', placeholder='Password')
+				br
+				button#btnLogin Login
+			// /LOGIN
+
+			h4 Don't have an account? <a href="/register" class="linkregisteruser" rel="Register">Register</a>
+
+		// /WRAPPER
+  

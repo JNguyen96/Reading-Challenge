@@ -127,7 +127,64 @@ a {
 					border: 0.5px solid #47476b;
 					padding:5px 10px;
 					text-align:center;
-				}																							       
+				}
+
+#recBookList {
+  margin:0 0 30px 0;
+}
+  #recBookList table {
+    border-collapse:separate;
+    border-spacing:0px;
+    border: 0.5px solid #47476b;
+    background:#CCC;
+  }
+    #recBookList table th {
+      background:linear-gradient(to left, rgba(0,153,255,0.25), rgba(0,153,255,1));
+      border: 0.5px solid #47476b;
+      font-weight:600;
+      padding:10px 20px;
+      text-align:center;
+    }
+      #recBookList table tbody {
+        padding:0; margin:0;
+        border-collapse:collapse;
+        border-spacing:0px;
+      }
+        #recBookList table td {
+          background:#ccebff;
+          border: 0.5px solid #47476b;
+          padding:5px 10px;
+          text-align:center;
+        }
+
+#booksReadList {
+  margin:0 0 30px 0;
+}
+  #booksReadList table {
+    border-collapse:separate;
+    border-spacing:0px;
+    border: 0.5px solid #47476b;
+    background:#CCC;
+  }
+    #booksReadList table th {
+      background:linear-gradient(to left, rgba(0,153,255,0.25), rgba(0,153,255,1));
+      border: 0.5px solid #47476b;
+      font-weight:600;
+      padding:10px 20px;
+      text-align:center;
+    }
+      #booksReadList table tbody {
+        padding:0; margin:0;
+        border-collapse:collapse;
+        border-spacing:0px;
+      }
+        #booksReadList table td {
+          background:#ccebff;
+          border: 0.5px solid #47476b;
+          padding:5px 10px;
+          text-align:center;
+        }
+
 
 fieldset {
 	 border:0;

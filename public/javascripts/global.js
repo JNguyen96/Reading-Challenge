@@ -24,6 +24,7 @@ function populateTables(){
 
 	var cfcTableContent = '';
 	var svmTableContent = '';
+	var booksReadTableContent = '';
 	var studentBooks = 0;
 	var mikeBooks = 0;
 	var readCFC = [];
@@ -50,6 +51,7 @@ function populateTables(){
 	// var numPGS = 0;
 	var currentUserObject;
 	var numStudents = 0;
+	var currBooks = '';
 
 	$.getJSON( '/users/userlist', function( data ) {
 
@@ -111,7 +113,20 @@ function populateTables(){
         	// 	pgs += userBooks.length;
         	// 	numPGS += 1;
         	// }
+
+        	for(var j = 0; j<userBooks.length-1; j++){
+        		currBooks += userBooks[j].title + ", ";	
+        	}
+        	currBooks += userBooks[userBooks.length-1].title;
+
+        	booksReadTableContent += '<tr>';
+        	booksReadTableContent += '<td>' + v.fullname + '</td>';
+        	booksReadTableContent += '<td>' + currBooks + '</td>';
+        	booksReadTableContent += '</tr>';
+
         });
+		$('#booksReadList table tbody').html(booksReadTableContent);
+		
         svmTableContent += '<tr>';
         svmTableContent += '<td>'+ (Math.round((studentBooks / (numStudents)) * 100) / 100) +'</td>';
         svmTableContent += '<td>' + mikeBooks + '</td>';
@@ -165,6 +180,80 @@ function populateTables(){
         // 	$('#postgradS').text(pgs/numPGS);
         // else
         // 	$('#postgradS').text(0);
+
+
+        var bookList = ["The Hiding Place@Corrie Ten Boom",
+					"Shadow of the Almighty@Elizabeth Elliot",
+					"No Compromise: The Life Story of Keith Green@Melody Green and David Hazard",
+					"YWAM Christian Heroes@Janet & Geoff Benge",
+					"Jesus Among Other Gods@Ravi Zacharias",
+					"Letters From a Skeptic@Gregory Boyd",
+					"Mere Christianity@CS Lewis",
+					"Miracles@CS Lewis",
+					"More Than a Carpenter@Josh & Sean McDowell",
+					"On Guard@William Lane Craig",
+					"The Case for Christ@Lee Strobel",
+					"The Case for Faith@Lee Strobel",
+					"The Problem of Pain@CS Lewis",
+					"The Reason for God@Timothy Keller",
+					"A Diary of Private Prayer@John Baillie",
+					"A Shepherd Looks at Psalm 23@Phillip Keller",
+					"Soul Keeping@John Ortberg",
+					"The Calvary Road@Roy Hession",
+					"The Case for Grace@Lee Strobel",
+					"The Only Necessary Thing@Henri Nouwen",
+					"The Return of the Prodigal Son@Henri Nouwen",
+					"Abolition of Man@CS Lewis",
+					"The Good Life@Chuck Colson",
+					"Being the Body@Charles Colson",
+					"Humility@Andrew Murray",
+					"I Kissed Dating Goodbye@Joshua Harris",
+					"Integrity@Henry Cloud",
+					"Jesus Driven Ministry@Ajith Fernando",
+					"Life Together@Diethrich Bonhoeffer",
+					"Living Faith@Helen Roseveare",
+					"Living Fellowship@Helen Roseveare",
+					"Living Holiness@Helen Roseveare",
+					"Living Sacrifice@Helen Roseveare",
+					"Loving God@Chuck Colson",
+					"Out of the Depths@Martyn Llyod-Jones",
+					"Satan and His Kingdom@Dennis McCallum",
+					"Stop Asking Jesus Into Your Heart@JD Greear",
+					"The Screwtape Letters@CS Lewis",
+					"The Weight of Glory@CS Lewis",
+					"Too Busy Not to Pray@Bill Hybels",
+					"We Would See Jesus@Roy Hession"];
+
+		var recBookTableContent = '';
+		var title = '';
+		var author = '';
+		for(var i=0; i<bookList.length; i++){
+			title = (bookList[i].split("@"))[0];
+			author = (bookList[i].split("@"))[1];
+			recBookTableContent += '<tr>';
+			if(i<4){
+				recBookTableContent += '<td>Heroes of Faith</td>';
+			}
+			else if(i<14){
+				recBookTableContent += '<td>Apologetics</td>';
+			}
+			else if(i<21){
+				recBookTableContent += '<td>Devotional</td>';
+			}
+			else if(i<23){
+				recBookTableContent += '<td>World View</td>';
+			}
+			else{
+				recBookTableContent += '<td>Christian Living</td>';
+			}
+			recBookTableContent += '<td>' + title + '</td>';
+			recBookTableContent += '<td>' + author + '</td>';
+			recBookTableContent += '</tr>';
+
+			$('#recBookList table tbody').html(recBookTableContent)
+		}
+
+
     });
 
 };
