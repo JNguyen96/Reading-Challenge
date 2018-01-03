@@ -1,6 +1,28 @@
 extends layout
 
 block content
+	<span id="currId" rel="#{id}"></span>
+	style.
+		ul {
+			list-style-type: none;
+			margin: 0;
+			padding: 0;
+			float: right;
+		}
+		li {
+			display: inline;
+			padding: 5px;
+		}
+		button:hover {
+			box-shadow: 1px 1px 5px black;
+		}
+
+	ul
+		li
+			button#btnHome Home
+		li
+			button#btnProf Profile
+
 	center
 		h1= title
 
