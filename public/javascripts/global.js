@@ -18,6 +18,8 @@ $(document).ready(function(){
 
 	$('#btnLogout').on('click',logoutUser);
 
+    $('#bookTable table tbody').on('click', 'td a.linkdeletebook', deleteBook);
+
 });
 
 function populateTables(){
@@ -319,18 +321,19 @@ function displayBooksRead(userId){
 		userListData = data;
 
 		// For each item in our JSON, add a table row and cells to the content string
-		for(var count = 0; count < userListData.length; count++){
-			if(userListData[count]._id == userId){
-				var books = JSON.parse(userListData[count].books);
+		userListData.forEach(function(user){
+			if(user._id == userId){
+				var books = JSON.parse(user.books);
 				$('#numBooks').text("Books Read: " + books.length);
 				for(var b = 0; b < books.length; b++){
 					tableContent += '<tr>';
 					tableContent += '<td>' + books[b].title + '</td>';
 					tableContent += '<td>' + books[b].author + '</td>';
+					tableContent += '<td><a href="#" class="linkdeletebook" rel="' + books[b].title + '">delete?</a></td>';
 					tableContent += '</tr>';
 				}
 			}
-		}
+		});
 
 		// Inject the whole content string into our existing HTML table
 		$('#bookTable table tbody').html(tableContent);
@@ -394,5 +397,48 @@ function addBook(event){
 		alert('Please fill in all fields');
 		return false;
 	}
+};
+
+function deleteBook(event){
+
+	event.preventDefault();
+
+	var userId = $('#currId').attr('rel');
+
+	var oldBookTitle = $(this).attr('rel');
+	$.getJSON( '/users/userlist', function ( data ){
+
+		$.each(data, function(int,val){
+			if(val._id == userId){
+				var userBooks = JSON.parse(val.books);
+				var indexToDelete = -1;
+				userBooks.forEach(function(book, index){
+					if(book.title.valueOf() == oldBookTitle.valueOf()){
+						indexToDelete = index;
+					}
+				});
+				if(indexToDelete != -1){
+					userBooks.splice(indexToDelete,1);
+				}
+				var newBookString = JSON.stringify(userBooks);
+
+				$.ajax({
+					type: 'PUT',
+					data: newBookString,
+					url: '/users/profile/addbook/' + val._id,
+					dataType: 'JSON'
+				}).done(function(response){
+
+					if(response.msg === ''){
+						displayBooksRead(val._id);
+					}
+					else{
+						window.alert('Error: ' + response.msg);
+					}
+				});
+			}
+		});
+
+	});
 };
 

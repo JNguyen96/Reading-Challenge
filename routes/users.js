@@ -31,7 +31,7 @@ router.get('/profile/:id', function(req,res){
 /*
  * PUT New book to booklist
  */
-router.put('/profile/addBook/:id', function(req, res){
+router.put('/profile/addbook/:id', function(req, res){
 	var db = req.db;
 	var collection = db.get('userlist');
 	var user = req.params.id;

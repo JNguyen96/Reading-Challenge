@@ -12,6 +12,9 @@ block content
 			display: inline;
 			padding: 5px;
 		}
+		button:hover {
+			box-shadow: 1px 1px 5px black;
+		}
 
 	ul
 		li
@@ -50,11 +53,12 @@ block content
 				thead
 					th Title
 					th Author
+					th
 				tbody
 		// / BOOK TABLE
 
 		// ADD BOOK
-		h4 Add a new book!
+		h3 Add a new book!
 		#addBook
 			form(action='/profile',method='post')
 				fieldset

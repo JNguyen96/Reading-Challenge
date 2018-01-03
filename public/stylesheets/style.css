@@ -1,16 +1,41 @@
 body {
   padding-left: 30px;
   font: 16px Times, Arial, sans-serif;
-  background-image: url("fallingSnow4.jpg");
+  background-image: url("winterBackground3.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
   background-color: #c2c2d6
+}
+
+h1 {
+	color: black;
+	text-shadow: 2px 2px 5px grey;
 }
 
 h2 {
    margin:0 0 .5em 0;
+   color: #1f1f2e;
+   text-shadow: 2px 2px 5px grey;
+}
+
+h4 {
+	color: white;
+	text-shadow: 1px 1px 5px black;
 }
 
 a {
-  color: #00B7FF;
+	color: #ff5050;
+	text-decoration: none;
+}
+
+a:hover {
+	color: #F00;
+	text-shadow: 1px 1px 5px grey;
+	text-decoration: underline;
+}
+
+a:active {
+	color: #F55;
 }
 
 
@@ -49,7 +74,7 @@ a {
 			background:linear-gradient(to left, rgba(0,153,255,0.25), rgba(0,153,255,1));
 			border: 0.5px solid #47476b;
 			font-weight:600;
-			width: 75%;
+			width: 60%;
 			padding:10px 10px;
 			text-align:left;
 		}
@@ -66,10 +91,19 @@ a {
 			}
 
 #wrapper {
-	 padding-left:200px;
+	padding-left: 15%;
+	padding-top: 5px;
+	position:relative;
+}
+
+#wrapperRegister {
+	 padding-left:0px;
 	 padding-top: 5px;
 	 position:relative;
 }
+	#wrapperRegister a {
+		color: #66ccff;
+	}
 
 #cfcList {
 	margin:0 0px 30px 0;
