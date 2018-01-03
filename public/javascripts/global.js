@@ -418,7 +418,7 @@ function displayBooksRead(userId){
 					tableContent += '<tr>';
 					tableContent += '<td>' + books[b].title + '</td>';
 					tableContent += '<td>' + books[b].author + '</td>';
-					tableContent += '<td><a href="#" class="linkdeletebook" rel="' + books[b].title + '">delete?</a></td>';
+					tableContent += '<td><a href="#" class="linkdeletebook" rel="' + books[b].title + '">delete</a></td>';
 					tableContent += '</tr>';
 				}
 			}

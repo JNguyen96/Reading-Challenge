@@ -12,6 +12,11 @@ h1 {
 	text-shadow: 2px 2px 5px grey;
 }
 
+#homeTitle a {
+	color: red;
+	padding-right: 10%;
+}
+
 h2 {
    margin:0 0 .5em 0;
    color: #1f1f2e;
@@ -24,20 +29,19 @@ h4 {
 }
 
 a {
-	color: #ff5050;
-	text-decoration: none;
+	color: #000;
+	text-decoration: underline;
 }
 
 a:hover {
-	color: #F00;
+	color: #000;
 	text-shadow: 1px 1px 5px grey;
 	text-decoration: underline;
 }
 
 a:active {
-	color: #F55;
+	color: #111;
 }
-
 
 #userInfo {
 	width:250px;
@@ -48,6 +52,7 @@ a:active {
 		padding:15px;
 		border:1px solid #47476b;
 		background:#ccebff;
+		text-align: left;
 	}
 
 #profileWrapper {
@@ -58,6 +63,19 @@ a:active {
 #chartWrapper {
 	padding-left:312px;
 	position:relative;
+}
+
+#addBook button {
+	width: 10%;
+	padding: 0px;
+}
+
+#addBook p {
+	text-align: left;
+}
+
+p {
+	text-align: center;
 }
 
 #bookTable {

@@ -6,11 +6,14 @@ block content
 		ul {
 			list-style-type: none;
 			margin: 0;
-			padding: 0;
+			padding: 5px;
 			float: right;
 		}
 		li {
 			display: inline;
+			padding: 5px;
+		}
+		button {
 			padding: 5px;
 		}
 		button:hover {
@@ -23,10 +26,13 @@ block content
 		li
 			button#btnLogout Logout
 
-	center
-		h1 A2F Winter Reading Challenge
-		p Check out our list of <a href="/books/recommendedbooks" class="linkrecommendedbooks" rel="Recommended">Recommended Books!</a>
-		<span id="currId" rel="#{id}"></span>
+	// HOME TITLE
+	#homeTitle
+		center
+			h1 A2F Winter Reading Challenge
+			h3 Check out our list of <a href="/books/recommendedbooks" class="linkrecommendedbooks" rel="Recommended">Recommended Books!</a>
+			<span id="currId" rel="#{id}"></span>
+	// /HOME TITLE
 
 	//WRAPPER
 	#wrapper
