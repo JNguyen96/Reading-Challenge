@@ -2,8 +2,6 @@ var userListData = [];
 
 $(document).ready(function(){
 
-	window.alert("READY!!");
-
 	populateTables();
 
 	displayUserInfo();
