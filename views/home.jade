@@ -6,12 +6,18 @@ block content
 		ul {
 			list-style-type: none;
 			margin: 0;
-			padding: 0;
+			padding: 5px;
 			float: right;
 		}
 		li {
 			display: inline;
 			padding: 5px;
+		}
+		button {
+			padding: 5px;
+		}
+		button:hover {
+			box-shadow: 1px 1px 5px black;
 		}
 
 	ul
@@ -20,40 +26,42 @@ block content
 		li
 			button#btnLogout Logout
 
-	center
-		h1 A2F Winter Reading Challenge
-		//p Check out the stats!!
-		<span id="currId" rel="#{id}"></span>
+	// HOME TITLE
+	#homeTitle
+		center
+			h1 A2F Winter Reading Challenge
+			h3 Check out our list of <a href="/books/recommendedbooks" class="linkrecommendedbooks" rel="Recommended">Recommended Books!</a>
+			<span id="currId" rel="#{id}"></span>
+	// /HOME TITLE
 
 	//WRAPPER
 	#wrapper
-		center
-			//BAR GRAPH
-			#barGraph
-			h2 Average Books Read
+		//BAR GRAPH
+		#barGraph
+		h2 Average Books Read
 
-			h4 Freshmen Brothers: <span id='froshB'></span>
+		h4 Freshmen Brothers: <span id='froshB'></span>
 
-			h4 Freshmen Sisters: <span id='froshS'></span>
+		h4 Freshmen Sisters: <span id='froshS'></span>
 
-			h4 Sophomore Brothers: <span id='sophB'></span>
+		h4 Sophomore Brothers: <span id='sophB'></span>
 
-			h4 Sophomore Sisters: <span id='sophS'></span>
+		h4 Sophomore Sisters: <span id='sophS'></span>
 
-			h4 Junior Brothers: <span id='juniorB'></span>
+		h4 Junior Brothers: <span id='juniorB'></span>
 
-			h4 Junior Sisters: <span id='juniorS'></span>
+		h4 Junior Sisters: <span id='juniorS'></span>
 
-			h4 Senior Brothers: <span id='seniorB'></span>
+		h4 Senior Brothers: <span id='seniorB'></span>
 
-			h4 Senior Sisters: <span id='seniorS'></span>
+		h4 Senior Sisters: <span id='seniorS'></span>
 
-			// TO ADD POST GRADS TO BAR GRAPH
-			//h4 Post-Grad Brothers: <span id='postgradB'></span>
+		// TO ADD POST GRADS TO BAR GRAPH
+		//h4 Post-Grad Brothers: <span id='postgradB'></span>
 
-			//h4 Post-Grad Sisters: <span id='postgradS'></span>
-			
-			// /BAR GRAPH
+		//h4 Post-Grad Sisters: <span id='postgradS'></span>
+		
+		// /BAR GRAPH
 
 		//CHART WRAPPER
 		#chartWrapper

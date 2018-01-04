@@ -9,24 +9,13 @@ var mongoose = require('mongoose');
 var monk = require('monk');
 var MongoClient = require('mongodb').MongoClient;
 var url = process.env.MONGOLAB_URI;
-// MongoClient.connect(url, (err, db) => {  
-//   if (err) {
-//     return console.log(err);
-//   }
-
-//   // Do something with db here, like inserting a record
-// 	db.collection('userlist').findOne({},function(err, result){
-// 		console.log(result.fullname);
-// 	});
-// 	this.db = db;
-//   	db.close();
-// });
 
 
 var index = require('./routes/index');
 var users = require('./routes/users');
 var home = require('./routes/home');
 var register = require('./routes/register');
+var books = require('./routes/books');
 
 var app = express();
 
@@ -56,6 +45,7 @@ app.use('/', index);
 app.use('/users', users);
 app.use('/home', home);
 app.use('/register', register);
+app.use('/books',books);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
