@@ -32,7 +32,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use(function(req,res,next){
-	MongoClient.connect(process.env.MONGOLAB_URI, (err, db) => {  
+	MongoClient.connect(url, (err, db) => {  
   		if (err) {
 		    return console.log(err);
 	  	}
