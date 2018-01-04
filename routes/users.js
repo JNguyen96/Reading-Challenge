@@ -4,7 +4,7 @@ var router = express.Router();
 
 /* GET users listing. */
 router.get('/userlist', function(req, res, next) {
-	MongoClient.connect(process.env.MONGOLAB_URI, (err, db) => {  
+	MongoClient.connect('mongodb://a2fRC:acts24247@ds135747.mlab.com:35747/a2f-reading-challenge', (err, db) => {  
   		if (err) {
 		    return console.log(err);
 	  }
@@ -28,7 +28,7 @@ router.get('/register', function(req,res,next){
  */
  router.post('/registeruser', function(req,res,next){
  	var body = req.body;
- 	MongoClient.connect(process.env.MONGOLAB_URI, (err, db) => {  
+ 	MongoClient.connect('mongodb://a2fRC:acts24247@ds135747.mlab.com:35747/a2f-reading-challenge', (err, db) => {  
   		if (err) {
 		    return console.log(err);
 	  }
@@ -51,7 +51,7 @@ router.get('/profile/:id', function(req,res,next){
 router.put('/profile/addBook/:id', function(req,res,next){
 	var user = req.params.id;
 	var body = req.body;
- 	MongoClient.connect(process.env.MONGOLAB_URI, (err, db) => {  
+ 	MongoClient.connect('mongodb://a2fRC:acts24247@ds135747.mlab.com:35747/a2f-reading-challenge', (err, db) => {  
   		if (err) {
 		    return console.log(err);
 	  	}

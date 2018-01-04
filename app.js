@@ -8,7 +8,7 @@ var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
 var monk = require('monk');
 var MongoClient = require('mongodb').MongoClient;
-var url = process.env.MONGOLAB_URI;
+var url = 'mongodb://a2fRC:acts24247@ds135747.mlab.com:35747/a2f-reading-challenge';
 
 
 var index = require('./routes/index');
