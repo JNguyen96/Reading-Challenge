@@ -9,7 +9,7 @@ router.get('/', function(req,res){
 /* POST to registeruser */
 router.post('/registeruser', function(req,res){
 	var db = req.db;
-	var collection = db.get('userlist');
+	var collection = db.collection('userlist');
 	collection.insert(req.body, function(err, result){
 		res.send((err === null) ? {msg: ''} : {msg: err});
 	});

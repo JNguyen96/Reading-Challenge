@@ -13,7 +13,7 @@ router.get('/:id', function(req,res){
  */
 router.put('/addBook/:id', function(req, res){
 	var db = req.db;
-	var collection = db.get('userlist');
+	var collection = db.collection('userlist');
 	var user = req.params.id;
 	collection.update({ '_id' : user },{$set:{ 'books' : Object.keys(req.body)[0] }}, function(err, result){
 		res.send((err === null) ? {msg: ''} : {msg: err});

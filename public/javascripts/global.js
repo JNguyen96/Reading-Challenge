@@ -62,8 +62,10 @@ function populateTables(){
         		mikeBooks = userBooks.length;
         	}
         	else{
-        		studentBooks += userBooks.length;
-        		numStudents += 1;
+        		if(v.year != 'Post-Grad'){
+        			studentBooks += userBooks.length;
+        			numStudents += 1;
+        		}
         	}
         	for (var i = 0; i<userBooks.length; i++){
         		if(userBooks[i].title.toLowerCase() == 'case for christmas'){
@@ -175,10 +177,8 @@ function loginUser(event){
 	var pass = $('#login input#loginPassword').val();
 	var success = false;
 	var hasPrompted = false;
-
 	$.getJSON( '/users/userlist', function( data ) {
 		userListData = data;
-
 		$.each(data, function(i, item){
 			if(item.username === userName && item.password === pass){
 				window.location.href = "/users/profile/" + item._id;

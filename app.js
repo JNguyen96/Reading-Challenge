@@ -4,10 +4,24 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
-
-var mongo = require('mongodb');
+// var mongo = require('mongodb');
+var mongoose = require('mongoose');
 var monk = require('monk');
-var db = monk('localhost:27017/readingTracker');
+var MongoClient = require('mongodb').MongoClient;
+var url = process.env.MONGOLAB_URI;
+// MongoClient.connect(url, (err, db) => {  
+//   if (err) {
+//     return console.log(err);
+//   }
+
+//   // Do something with db here, like inserting a record
+// 	db.collection('userlist').findOne({},function(err, result){
+// 		console.log(result.fullname);
+// 	});
+// 	this.db = db;
+//   	db.close();
+// });
+
 
 var index = require('./routes/index');
 var users = require('./routes/users');
@@ -29,7 +43,12 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use(function(req,res,next){
-	req.db = db;
+	MongoClient.connect(process.env.MONGOLAB_URI, (err, db) => {  
+  		if (err) {
+		    return console.log(err);
+	  	}
+ 		req.db = db;
+ 	});
 	next();
 });
 
