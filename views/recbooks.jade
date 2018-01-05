@@ -1,16 +1,17 @@
 extends layout
-
 block content
-	<span id="currId" rel="#{id}"></span>
 	style.
 		ul {
 			list-style-type: none;
 			margin: 0;
-			padding: 0;
+			padding: 5px;
 			float: right;
 		}
 		li {
 			display: inline;
+			padding: 5px;
+		}
+		button {
 			padding: 5px;
 		}
 		button:hover {
@@ -25,7 +26,7 @@ block content
 
 	center
 		h1= title
-
+		<span id="currId" rel="#{id}"></span>
 	//CHART WRAPPER
 	#chartWrapper
 		//BOOK LIST
@@ -38,5 +39,3 @@ block content
 				tbody
 		// /BOOK LIST
 	// /CHART WRAPPER
-
-  
