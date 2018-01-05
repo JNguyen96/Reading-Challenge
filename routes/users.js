@@ -5,7 +5,7 @@ var router = express.Router();
 
 /* GET users listing. */
 router.get('/userlist', function(req, res, next) {
-	MongoClient.connect('mongodb://a2fRC:acts24247@ds135747.mlab.com:35747/a2f-reading-challenge', (err, db) => {  
+	MongoClient.connect('mongodb://a2fRC:acts24247@ds139067.mlab.com:39067/heroku_f8dn17g6', (err, db) => {  
   		if (err) {
 		    return console.log(err);
 	  }
@@ -29,7 +29,7 @@ router.get('/register', function(req,res,next){
  */
  router.post('/registeruser', function(req,res,next){
  	var body = req.body;
- 	MongoClient.connect('mongodb://a2fRC:acts24247@ds135747.mlab.com:35747/a2f-reading-challenge', (err, db) => {  
+ 	MongoClient.connect('mongodb://a2fRC:acts24247@ds139067.mlab.com:39067/heroku_f8dn17g6', (err, db) => {  
   		if (err) {
 		    return console.log(err);
 	  }
@@ -53,7 +53,7 @@ router.get('/profile/:id', function(req,res,next){
 router.put('/profile/addBook/:id', function(req,res,next){
 	var userId = req.params.id;
 	var body = req.body;
- 	MongoClient.connect('mongodb://a2fRC:acts24247@ds135747.mlab.com:35747/a2f-reading-challenge', (err, db) => {  
+ 	MongoClient.connect('mongodb://a2fRC:acts24247@ds139067.mlab.com:39067/heroku_f8dn17g6', (err, db) => {  
   		if (err) {
 		    return console.log(err);
 	  	}
