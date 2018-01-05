@@ -2,6 +2,9 @@ var userListData = [];
 
 $(document).ready(function(){
 
+	console.log("READY");
+	window.alert("READY");
+
 	populateTables();
 
 	displayUserInfo();
@@ -265,6 +268,7 @@ function populateTables(){
 };
 
 function loginUser(event){
+	window.alert("LOGIN");
 	event.preventDefault();
 	var userName = $('#login input#loginUserName').val();
 	var pass = $('#login input#loginPassword').val();
