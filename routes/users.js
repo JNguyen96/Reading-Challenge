@@ -11,7 +11,7 @@ router.get('/userlist', function(req, res, next) {
 	  }
 
 	  // Do something with db here, like inserting a record
-		db.db('a2f-reading-challenge').collection('userlist').find().toArray(function(err, docs) {
+		db.db('heroku_f8dn17g6').collection('userlist').find().toArray(function(err, docs) {
         	res.json(docs);
       });
 	  	db.close();
@@ -33,7 +33,7 @@ router.get('/register', function(req,res,next){
   		if (err) {
 		    return console.log(err);
 	  }
-	 	db.db('a2f-reading-challenge').collection('userlist').insert(body, function(err, result){
+	 	db.db('heroku_f8dn17g6').collection('userlist').insert(body, function(err, result){
 	 		res.send((err === null) ? {msg: ''} : {msg: err});
 	 	});
 	 	db.close()
@@ -57,7 +57,7 @@ router.put('/profile/addBook/:id', function(req,res,next){
   		if (err) {
 		    return console.log(err);
 	  	}
-		var database = db.db('a2f-reading-challenge').collection('userlist');
+		var database = db.db('heroku_f8dn17g6').collection('userlist');
 		database.updateOne( { _id : ObjectId(userId) }, { $set : { 'books' : Object.keys(body)[0] } }, function( err, result){
 			console.log('IN HERE');
 			res.send((err === null) ? {msg : ''} : {msg : err});
