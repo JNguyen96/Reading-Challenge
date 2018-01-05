@@ -76,11 +76,11 @@ function populateTables(){
         			readCFC.push(v.fullname);
         		}
         	}
-        	if(v.year == 'Freshmen' && v.gender == 'Male'){
+        	if(v.year == 'Freshman' && v.gender == 'Male'){
         		fb += userBooks.length;
         		numFB += 1;
         	}
-        	else if(v.year == 'Freshmen' && v.gender == 'Female'){
+        	else if(v.year == 'Freshman' && v.gender == 'Female'){
         		fs += userBooks.length;
         		numFS += 1;
         	}
@@ -121,7 +121,9 @@ function populateTables(){
         	for(var j = 0; j<userBooks.length-1; j++){
         		currBooks += userBooks[j].title + ", ";	
         	}
-        	currBooks += userBooks[userBooks.length-1].title;
+        	if(userBooks.length > 0){
+        		currBooks += userBooks[userBooks.length-1].title;
+        	}
 
         	booksReadTableContent += '<tr>';
         	booksReadTableContent += '<td>' + v.fullname + '</td>';

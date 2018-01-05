@@ -4,10 +4,10 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
-// var mongo = require('mongodb');
-var mongoose = require('mongoose');
+var mongo = require('mongodb');
+var mongoose = require('mongoose').set('debug',true);
 var monk = require('monk');
-var MongoClient = require('mongodb').MongoClient;
+var MongoClient = mongo.MongoClient;
 var url = 'mongodb://a2fRC:acts24247@ds139067.mlab.com:39067/heroku_f8dn17g6';
 
 
