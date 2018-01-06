@@ -72,7 +72,7 @@ function populateTables(){
         		}
         	}
         	for (var i = 0; i<userBooks.length; i++){
-        		if(userBooks[i].title.toLowerCase() == 'case for christmas'){
+        		if(userBooks[i].title.toLowerCase() == 'case for christmas' || userBooks[i].title.toLowerCase() == 'the case for christmas'){
         			readCFC.push(v.fullname);
         		}
         	}
@@ -125,10 +125,12 @@ function populateTables(){
         		currBooks += userBooks[userBooks.length-1].title;
         	}
 
+
         	booksReadTableContent += '<tr>';
         	booksReadTableContent += '<td>' + v.fullname + '</td>';
         	booksReadTableContent += '<td>' + currBooks + '</td>';
         	booksReadTableContent += '</tr>';
+        	currBooks = '';
 
         });
 		$('#booksReadList table tbody').html(booksReadTableContent);
