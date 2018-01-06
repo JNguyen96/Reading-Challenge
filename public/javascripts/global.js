@@ -148,35 +148,35 @@ function populateTables(){
         });
         $('#cfcList table tbody').html(cfcTableContent);
         if(numFB != 0)
-        	$('#froshB').text((fb/numFB));
+        	$('#froshB').text(Math.round((fb/numFB) * 100) / 100);
         else
         	$('#froshB').text(0);
         if(numFS != 0)
-        	$('#froshS').text(fs/numFS);
+        	$('#froshS').text(Math.round((fs/numFS) * 100) / 100);
         else
         	$('#froshS').text(0);
         if(numSOB != 0)
-        	$('#sophB').text(sob/numSOB);
+        	$('#sophB').text(Math.round((sob/numSOB) * 100) / 100);
         else
         	$('#sophB').text(0);
         if(numSOS != 0)
-        	$('#sophS').text(sos/numSOS);
+        	$('#sophS').text(Math.round((sos/numSOS) * 100) / 100);
         else
         	$('#sophS').text(0);
         if(numJB != 0)
-        	$('#juniorB').text(jb/numJB);
+        	$('#juniorB').text(Math.round((jb/numJB) * 100) / 100);
         else
         	$('#juniorB').text(0);
         if(numJS != 0)
-        	$('#juniorS').text(js/numJS);
+        	$('#juniorS').text(Math.round((js/numJS) * 100) / 100);
         else
         	$('#juniorS').text(0);
         if(numSB != 0)
-        	$('#seniorB').text(sb/numSB);
+        	$('#seniorB').text(Math.round((sb/numSB) * 100) / 100);
         else
         	$('#seniorB').text(0);
         if(numSS != 0)
-        	$('#seniorS').text(ss/numSS);
+        	$('#seniorS').text(Math.round((ss/numS) * 100) / 100);
         else
         	$('#seniorS').text(0);
         // TO ADD POST GRADS TO BAR GRAPH
