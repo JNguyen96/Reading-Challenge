@@ -176,7 +176,7 @@ function populateTables(){
         else
         	$('#seniorB').text(0);
         if(numSS != 0)
-        	$('#seniorS').text(Math.round((ss/numS) * 100) / 100);
+        	$('#seniorS').text(Math.round((ss/numSS) * 100) / 100);
         else
         	$('#seniorS').text(0);
         // TO ADD POST GRADS TO BAR GRAPH
