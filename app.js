@@ -4,10 +4,12 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
-
 var mongo = require('mongodb');
+var mongoose = require('mongoose').set('debug',true);
 var monk = require('monk');
-var db = monk('localhost:27017/readingTracker');
+var MongoClient = mongo.MongoClient;
+var url = 'mongodb://a2fRC:acts24247@ds139067.mlab.com:39067/heroku_f8dn17g6';
+
 
 var index = require('./routes/index');
 var users = require('./routes/users');
@@ -30,7 +32,12 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use(function(req,res,next){
-	req.db = db;
+	MongoClient.connect(url, (err, db) => {  
+  		if (err) {
+		    return console.log(err);
+	  	}
+ 		req.db = db;
+ 	});
 	next();
 });
 

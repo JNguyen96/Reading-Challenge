@@ -68,19 +68,21 @@ function populateTables(){
         		mikeBooks = userBooks.length;
         	}
         	else{
-        		studentBooks += userBooks.length;
-        		numStudents += 1;
+        		if(v.year != 'Post-Grad'){
+        			studentBooks += userBooks.length;
+        			numStudents += 1;
+        		}
         	}
         	for (var i = 0; i<userBooks.length; i++){
-        		if(userBooks[i].title.toLowerCase() == 'case for christmas'){
+        		if(userBooks[i].title.toLowerCase() == 'case for christmas' || userBooks[i].title.toLowerCase() == 'the case for christmas'){
         			readCFC.push(v.fullname);
         		}
         	}
-        	if(v.year == 'Freshmen' && v.gender == 'Male'){
+        	if(v.year == 'Freshman' && v.gender == 'Male'){
         		fb += userBooks.length;
         		numFB += 1;
         	}
-        	else if(v.year == 'Freshmen' && v.gender == 'Female'){
+        	else if(v.year == 'Freshman' && v.gender == 'Female'){
         		fs += userBooks.length;
         		numFS += 1;
         	}
@@ -121,12 +123,16 @@ function populateTables(){
         	for(var j = 0; j<userBooks.length-1; j++){
         		currBooks += userBooks[j].title + ", ";	
         	}
-        	currBooks += userBooks[userBooks.length-1].title;
+        	if(userBooks.length > 0){
+        		currBooks += userBooks[userBooks.length-1].title;
+        	}
+
 
         	booksReadTableContent += '<tr>';
         	booksReadTableContent += '<td>' + v.fullname + '</td>';
         	booksReadTableContent += '<td>' + currBooks + '</td>';
         	booksReadTableContent += '</tr>';
+        	currBooks = '';
 
         });
 		$('#booksReadList table tbody').html(booksReadTableContent);
@@ -144,35 +150,35 @@ function populateTables(){
         });
         $('#cfcList table tbody').html(cfcTableContent);
         if(numFB != 0)
-        	$('#froshB').text((fb/numFB));
+        	$('#froshB').text(Math.round((fb/numFB) * 100) / 100);
         else
         	$('#froshB').text(0);
         if(numFS != 0)
-        	$('#froshS').text(fs/numFS);
+        	$('#froshS').text(Math.round((fs/numFS) * 100) / 100);
         else
         	$('#froshS').text(0);
         if(numSOB != 0)
-        	$('#sophB').text(sob/numSOB);
+        	$('#sophB').text(Math.round((sob/numSOB) * 100) / 100);
         else
         	$('#sophB').text(0);
         if(numSOS != 0)
-        	$('#sophS').text(sos/numSOS);
+        	$('#sophS').text(Math.round((sos/numSOS) * 100) / 100);
         else
         	$('#sophS').text(0);
         if(numJB != 0)
-        	$('#juniorB').text(jb/numJB);
+        	$('#juniorB').text(Math.round((jb/numJB) * 100) / 100);
         else
         	$('#juniorB').text(0);
         if(numJS != 0)
-        	$('#juniorS').text(js/numJS);
+        	$('#juniorS').text(Math.round((js/numJS) * 100) / 100);
         else
         	$('#juniorS').text(0);
         if(numSB != 0)
-        	$('#seniorB').text(sb/numSB);
+        	$('#seniorB').text(Math.round((sb/numSB) * 100) / 100);
         else
         	$('#seniorB').text(0);
         if(numSS != 0)
-        	$('#seniorS').text(ss/numSS);
+        	$('#seniorS').text(Math.round((ss/numSS) * 100) / 100);
         else
         	$('#seniorS').text(0);
         // TO ADD POST GRADS TO BAR GRAPH
@@ -268,10 +274,8 @@ function loginUser(event){
 	var pass = $('#login input#loginPassword').val();
 	var success = false;
 	var hasPrompted = false;
-
 	$.getJSON( '/users/userlist', function( data ) {
 		userListData = data;
-
 		$.each(data, function(i, item){
 			if(item.username === userName && item.password === pass){
 				window.location.href = "/users/profile/" + item._id;

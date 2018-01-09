@@ -1,7 +1,5 @@
 extends layout
-
 block content
-	<span id="currId" rel="#{id}"></span>
 	style.
 		ul {
 			list-style-type: none;
@@ -28,7 +26,7 @@ block content
 
 	center
 		h1= title
-
+		<span id="currId" rel="#{id}"></span>
 	//CHART WRAPPER
 	#chartWrapper
 		//BOOK LIST
@@ -41,5 +39,3 @@ block content
 				tbody
 		// /BOOK LIST
 	// /CHART WRAPPER
-
-  
