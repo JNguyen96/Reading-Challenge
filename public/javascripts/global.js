@@ -20,6 +20,8 @@ $(document).ready(function(){
 
     $('#bookTable table tbody').on('click', 'td a.linkdeletebook', deleteBook);
 
+    $('#homeTitle h3').on('click', 'a.linkrecommendedbooks', showRecommendedBooks)
+
 });
 
 function populateTables(){
@@ -289,19 +291,25 @@ function loginUser(event){
 	});
 };
 
+function showRecommendedBooks(event){
+	event.preventDefault();
+
+	var userId = $('#currId').attr('rel');
+	window.location.href = "/books/recommendedbooks/" + userId;
+};
+
 function logoutUser(event){
 	event.preventDefault();
 
 	window.location.href = "/";
-
-}
+};
 
 function goHome(event){
 	event.preventDefault();
 	
 	var userId = $('#currId').attr('rel');
 	window.location.href = "/home/" + userId;
-}
+};
 
 function goToProfile(event){
 	event.preventDefault();
@@ -309,7 +317,7 @@ function goToProfile(event){
 	var userId = $('#currId').attr('rel');
 	window.location.href = "/users/profile/" + userId;
 
-}
+};
 
 function addUser(event){
 
