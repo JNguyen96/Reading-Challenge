@@ -457,9 +457,11 @@ function addBook(event){
 
 	if(errorCount === 0){
 		var userId = $('#currId').attr('rel');
+		var newTitle = $('#addBook input#bkTitle').val().replace(/&/g, ", ");
+		var newAuthor = $('#addBook input#bkAuthor').val().replace(/&/g, ", ");
 		var newBook = {
-			'title': $('#addBook input#bkTitle').val(),
-			'author': $('#addBook input#bkAuthor').val()
+			'title': newTitle,
+			'author': newAuthor
 		}
 		$.getJSON( '/users/userlist', function ( data ){
 
